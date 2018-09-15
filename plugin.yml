@@ -1,0 +1,20 @@
+main: de.jeffclan.LumberJack.LumberJack
+name: LumberJack
+version: 1.1.0
+api-version: 1.13
+description: Enable gravity for trees
+author: mfnalex
+prefix: LumberJack
+database: false
+website: https://www.spigotmc.org/resources/1-13-lumberjack.60306/
+commands:
+  lumberjack:
+    description: Toggle gravity for tree trunks
+    permission: lumberjack.use
+    aliases: [treegravity,tg,gravity]
+permissions:
+  lumberjack.use:
+    description: Allows usage of the command /lumberjack
+  lumberjack.force:
+    description: Forces tree gravity to be enabled for this player
+    default: false

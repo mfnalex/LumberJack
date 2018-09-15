@@ -1,0 +1,115 @@
+#########################
+#####   LumberJack  #####
+#########################
+
+#
+# LumberJack provides the /lumberjack command, that toggles
+# tree gravity per player. Players need the lumberjack.use permission.
+# When a player has the lumberjack.force permission, they cannot
+# disable tree gravity.
+#
+# Aliases for /lumberjack:
+# - /treegravity
+# - /gravity
+# - /tg
+#
+
+# Whether gravity is enabled by default for new players
+# Hint: To force players using gravity, give them
+# the lumberjack.force permission
+gravity-enabled-by-default: false
+
+# Whether logs attached at the side or diagonally of the tree trunk
+# should also fall down
+attached-logs-fall-down: true
+
+# when set to true, players with gravity DISABLED will be
+# shown a message on how to enable tree gravity
+# when they break a log for the first time.
+# consider setting this to true when you disable gravity by default.
+# see also -> message-when-breaking-log
+show-message-when-breaking-log: true
+
+# when set to true, players with gravity ENABLED will be
+# shown a message on how to disable tree gravity
+# when they break a log for the first time.
+# consider setting this to true when you enable gravity by default.
+# see also -> message-when-breaking-log2
+show-message-when-breaking-log-and-gravity-is-enabled: false
+
+# when set to true, the messages are shown again when a player
+# logs out and back in and then breaks a log again.
+show-message-again-after-logout: true
+
+# should we check for updates?
+# when enabled, a message is printed in the console if a new
+# version has been found, and OPs will be notified when they
+# join the server
+# When set to true, we will check for updates on startup and every 24 hours
+# When set to on-startup, we will only check on startup
+# When set to false, don't check for updates
+check-for-updates: true
+
+#########################
+##### tree blocks  ######
+#########################
+
+# You can set the blocks that will be counted as tree part
+# Default is all types of logs, wood, stripped log and stripped wood
+tree-blocks:
+- ACACIA_LOG
+- ACACIA_WOOD
+- BIRCH_LOG
+- BIRCH_WOOD
+- DARK_OAK_LOG
+- DARK_OAK_WOOD
+- JUNGLE_LOG
+- JUNGLE_WOOD
+- OAK_LOG
+- OAK_WOOD
+- SPRUCE_LOG
+- SPRUCE_WOOD
+- STRIPPED_ACACIA_LOG
+- STRIPPED_ACACIA_WOOD
+- STRIPPED_BIRCH_LOG
+- STRIPPED_BIRCH_WOOD
+- STRIPPED_DARK_OAK_LOG
+- STRIPPED_DARK_OAK_WOOD
+- STRIPPED_JUNGLE_LOG
+- STRIPPED_JUNGLE_WOOD
+- STRIPPED_OAK_LOG
+- STRIPPED_OAK_WOOD
+- STRIPPED_SPRUCE_LOG
+- STRIPPED_SPRUCE_WOOD
+
+#########################
+##### localization ######
+#########################
+
+# Available color codes:
+# &0 Black        &6 Gold       &c Red
+# &1 Dark Blue    &7 Gray       &d Light Purple
+# &2 Dark Green   &8 Dark Gray  &e Yellow
+# &3 Dark Aqua    &9 Blue       &f White
+# &4 Dark Red     &a Green     
+# &5 Dark Purple  &b Aqua
+
+# Available formatting codes:
+# &k Obfuscated   &m Strikethrough
+# &l Bold         &o Italic
+# &n Underline    &r Reset
+
+##### English
+message-gravity-enabled: "&7Tree gravity has been &aenabled&7."
+message-gravity-disabled: "&7Tree gravity has been &cdisabled&7."
+message-when-breaking-log: "&7Hint: Type &6/lumberjack&7 to enable tree gravity."
+message-when-breaking-log2: "&7Hint: Type &6/lumberjack&7 to disable tree gravity."
+message-can-not-disable: "&cYou are not allowed to disable tree gravity."
+
+
+#########################
+#####     Done!     #####
+#########################
+
+# please do not change the following line manually!
+config-version: 3
