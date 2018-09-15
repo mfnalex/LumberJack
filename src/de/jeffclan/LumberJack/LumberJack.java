@@ -140,7 +140,7 @@ public class LumberJack extends JavaPlugin {
 		for(String blockName : treeBlockNames) {
 			if(Material.matchMaterial(blockName) != null) {
 				if(Material.matchMaterial(blockName) == block.getType()) {
-					getLogger().warning(block.getType() + " IS TREE");
+					//getLogger().warning(block.getType() + " IS TREE");
 					return true;
 				}
 			} else {
