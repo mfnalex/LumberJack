@@ -31,7 +31,7 @@ public class CommandLumberjack implements CommandExecutor {
 			return true;
 		}
 		
-		if(sender.hasPermission("lumberjack.force")) {
+		if(sender.hasPermission("lumberjack.force") && !sender.hasPermission("lumberjack.force.ignore")) {
 			sender.sendMessage(plugin.messages.MSG_CAN_NOT_DISABLE);
 			return true;
 		}

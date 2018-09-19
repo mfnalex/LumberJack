@@ -28,7 +28,7 @@ public class BlockBreakListener implements Listener {
 		if (plugin.isPartOfTree(e.getBlock())) {
 
 			// Dont show message when gravity is forced
-			if (!e.getPlayer().hasPermission("lumberjack.force") && e.getPlayer().hasPermission("lumberjack.use")) {
+			if ( (!e.getPlayer().hasPermission("lumberjack.force") || e.getPlayer().hasPermission("lumberjack.force.ignore")) && e.getPlayer().hasPermission("lumberjack.use")) {
 				Player p = e.getPlayer();
 				if (!plugin.getPlayerSetting(p).gravityEnabled) {
 					if (!plugin.getPlayerSetting(p).hasSeenMessage) {
@@ -54,7 +54,7 @@ public class BlockBreakListener implements Listener {
 		}
 
 		if (!plugin.getPlayerSetting(e.getPlayer()).gravityEnabled
-				&& !e.getPlayer().hasPermission("lumberjack.force")) {
+				&& ( !e.getPlayer().hasPermission("lumberjack.force")) || e.getPlayer().hasPermission("lumberjack.force.ignore")){
 			return;
 		}
 

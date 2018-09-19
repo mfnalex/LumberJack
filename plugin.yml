@@ -18,3 +18,6 @@ permissions:
   lumberjack.force:
     description: Forces tree gravity to be enabled for this player
     default: false
+  lumberjack.force.ignore:
+    description: Ignores lumberjack.force permission. This permission exists so that players with a wildcard permission can still use the command /lumberjack
+    default: false
