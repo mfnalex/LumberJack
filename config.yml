@@ -106,6 +106,13 @@ message-when-breaking-log: "&7Hint: Type &6/lumberjack&7 to enable tree gravity.
 message-when-breaking-log2: "&7Hint: Type &6/lumberjack&7 to disable tree gravity."
 message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 
+##### French
+#message-gravity-enabled: "&7La gravité d'arbre a été &aactivée&7."
+#message-gravity-disabled: "&7La gravité d'arbre a été &cdésactivée&7."
+#message-when-breaking-log: "&7Astuce: écris &6/lumberjack&7 pour activer la gravité d'arbre."
+#message-when-breaking-log2: "&7Astuce: écris &6/lumberjack&7 pour désactiver la gravité d'arbre."
+#message-can-not-disable: "&cVous n'avez pas la permission de désactiver la gravité d'arbre."
+
 
 #########################
 #####     Done!     #####
