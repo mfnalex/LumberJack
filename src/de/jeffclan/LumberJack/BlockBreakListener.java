@@ -53,10 +53,16 @@ public class BlockBreakListener implements Listener {
 			return;
 		}
 
-		if (!plugin.getPlayerSetting(e.getPlayer()).gravityEnabled
-				&& ( !e.getPlayer().hasPermission("lumberjack.force")) || e.getPlayer().hasPermission("lumberjack.force.ignore")){
+		if (!plugin.getPlayerSetting(e.getPlayer()).gravityEnabled && e.getPlayer().hasPermission("lumberjack.force.ignore")) {
+			System.out.println("exiting: player has gravity disabled and the ignore permission.");
+			return;
+			
+		}
+		if(!plugin.getPlayerSetting(e.getPlayer()).gravityEnabled && !e.getPlayer().hasPermission("lumberjack.force")) {
+			System.out.println("exiting: player has gravity disabled and no force permission");
 			return;
 		}
+		System.out.println("player has either gravity on or is forced");
 
 		ArrayList<Block> logs;
 
