@@ -23,7 +23,7 @@ public class LumberJack extends JavaPlugin {
 	boolean gravityEnabledByDefault = false;
 	Messages messages;
 	UpdateChecker updateChecker;
-	private int currentConfigVersion = 3;
+	private int currentConfigVersion = 4;
 	private boolean usingMatchingConfig = true;
 
 	HashMap<Player, PlayerSetting> perPlayerSettings;
@@ -44,10 +44,12 @@ public class LumberJack extends JavaPlugin {
 		messages = new Messages(this);
 		updateChecker = new UpdateChecker(this);
 		BlockBreakListener blockBreakListener = new BlockBreakListener(this);
+		BlockPlaceListener blockPlaceListener = new BlockPlaceListener(this);
 		PlayerListener playerListener = new PlayerListener(this);
 		CommandLumberjack commandLumberjack = new CommandLumberjack(this);
 		getCommand("lumberjack").setExecutor(commandLumberjack);
 		getServer().getPluginManager().registerEvents(blockBreakListener, this);
+		getServer().getPluginManager().registerEvents(blockPlaceListener, this);
 		getServer().getPluginManager().registerEvents(playerListener, this);
 
 		perPlayerSettings = new HashMap<Player, PlayerSetting>();
@@ -59,6 +61,8 @@ public class LumberJack extends JavaPlugin {
 		metrics.addCustomChart(new Metrics.SimplePie("using_matching_config", () -> Boolean.toString(usingMatchingConfig)));
 		metrics.addCustomChart(new Metrics.SimplePie("show_message_again_after_logout", () -> Boolean.toString(getConfig().getBoolean("show-message-again-after-logout"))));
 		metrics.addCustomChart(new Metrics.SimplePie("attached_logs_fall_down", () -> Boolean.toString(getConfig().getBoolean("attached-logs-fall-down"))));
+		metrics.addCustomChart(new Metrics.SimplePie("prevent_torch_exploit", () -> Boolean.toString(getConfig().getBoolean("prevent-torch-exploit"))));
+
 
 		
 		if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("true")) {
@@ -120,6 +124,7 @@ public class LumberJack extends JavaPlugin {
 		getConfig().addDefault("check-for-updates", "true");
 		getConfig().addDefault("show-message-again-after-logout", true);
 		getConfig().addDefault("attached-logs-fall-down", true);
+		getConfig().addDefault("prevent-torch-exploit", true);
 		
 	}
 
@@ -140,6 +145,22 @@ public class LumberJack extends JavaPlugin {
 		for(String blockName : treeBlockNames) {
 			if(Material.matchMaterial(blockName) != null) {
 				if(Material.matchMaterial(blockName) == block.getType()) {
+					//getLogger().warning(block.getType() + " IS TREE");
+					return true;
+				}
+			} else {
+				getLogger().warning("Block type not found: " + blockName);
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean isPartOfTree(Material mat) {
+		
+		for(String blockName : treeBlockNames) {
+			if(Material.matchMaterial(blockName) != null) {
+				if(Material.matchMaterial(blockName) == mat) {
 					//getLogger().warning(block.getType() + " IS TREE");
 					return true;
 				}
@@ -231,6 +252,25 @@ public class LumberJack extends JavaPlugin {
 			currentBlock = currentBlock.getRelative(BlockFace.UP);
 		}
 		return list.toArray(new Block[list.size()]);
+	}
+	
+	public boolean isAboveNonSolidBlock(Block block) {
+		
+		for(int height = block.getY()-1;height>=0;height--) {
+			Block candidate = block.getWorld().getBlockAt(block.getX(), height, block.getZ());
+			//System.out.println(String.format("checking if %s is solid:",candidate.getType().name()));
+			if(candidate.getType().isSolid()) {
+				//System.out.println("solid");
+				return true;
+			}
+			if(candidate.getType()!=Material.AIR) {
+				//System.out.println("air");
+				return false;
+			}
+			
+		}
+		return true;
+		
 	}
 	
 //	public boolean isTreePart(Block block) {

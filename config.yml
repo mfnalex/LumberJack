@@ -23,6 +23,13 @@ gravity-enabled-by-default: false
 # should also fall down
 attached-logs-fall-down: true
 
+# Prevents the placement of torches or other non-solid
+# blocks inside or under falling logs.
+# Also prevents the logs from starting to fall down
+# when the first block below the log (except air)
+# is not solid.
+prevent-torch-exploit: true
+
 # when set to true, players with gravity DISABLED will be
 # shown a message on how to enable tree gravity
 # when they break a log for the first time.
@@ -82,6 +89,16 @@ tree-blocks:
 - STRIPPED_SPRUCE_LOG
 - STRIPPED_SPRUCE_WOOD
 
+# If the tree does not stand on one of the following blocks,
+# it will not be counted as a tree.
+# *** WILL BE IMPLEMENTED LATER ***
+# PLEASE LET ME KNOW IF YOU NEED THIS
+#tree-ground-blocks:
+#- GRASS_BLOCK
+#- DIRT
+#- COARSE_DIRT
+#- MYCELIUM
+
 #########################
 ##### localization ######
 #########################
@@ -118,4 +135,4 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #########################
 
 # please do not change the following line manually!
-config-version: 3
+config-version: 4

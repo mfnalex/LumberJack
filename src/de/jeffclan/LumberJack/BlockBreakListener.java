@@ -52,17 +52,22 @@ public class BlockBreakListener implements Listener {
 		if (!plugin.isPartOfTree(e.getBlock())) {
 			return;
 		}
+		
+		// fix for torch bug part 2
+		if(plugin.getConfig().getBoolean("prevent-torch-exploit") && !plugin.isAboveNonSolidBlock(e.getBlock())) {
+			return;
+		}
 
 		if (!plugin.getPlayerSetting(e.getPlayer()).gravityEnabled && e.getPlayer().hasPermission("lumberjack.force.ignore")) {
-			System.out.println("exiting: player has gravity disabled and the ignore permission.");
+			//System.out.println("exiting: player has gravity disabled and the ignore permission.");
 			return;
 			
 		}
 		if(!plugin.getPlayerSetting(e.getPlayer()).gravityEnabled && !e.getPlayer().hasPermission("lumberjack.force")) {
-			System.out.println("exiting: player has gravity disabled and no force permission");
+			//System.out.println("exiting: player has gravity disabled and no force permission");
 			return;
 		}
-		System.out.println("player has either gravity on or is forced");
+		//System.out.println("player has either gravity on or is forced");
 
 		ArrayList<Block> logs;
 
