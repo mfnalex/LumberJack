@@ -19,6 +19,10 @@
 # the lumberjack.force permission
 gravity-enabled-by-default: false
 
+# When enabled, tree gravity will only apply when the
+# player used an axe to break the log.
+must-use-axe: true
+
 # Whether logs attached at the side or diagonally of the tree trunk
 # should also fall down
 attached-logs-fall-down: true
@@ -135,4 +139,4 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #########################
 
 # please do not change the following line manually!
-config-version: 4
+config-version: 5

@@ -23,7 +23,7 @@ public class LumberJack extends JavaPlugin {
 	boolean gravityEnabledByDefault = false;
 	Messages messages;
 	UpdateChecker updateChecker;
-	private int currentConfigVersion = 4;
+	private int currentConfigVersion = 5;
 	private boolean usingMatchingConfig = true;
 
 	HashMap<Player, PlayerSetting> perPlayerSettings;
@@ -125,6 +125,7 @@ public class LumberJack extends JavaPlugin {
 		getConfig().addDefault("show-message-again-after-logout", true);
 		getConfig().addDefault("attached-logs-fall-down", true);
 		getConfig().addDefault("prevent-torch-exploit", true);
+		getConfig().addDefault("must-use-axe", true);
 		
 	}
 

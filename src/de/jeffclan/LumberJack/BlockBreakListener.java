@@ -24,8 +24,11 @@ public class BlockBreakListener implements Listener {
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e) {
+		
+		if (!plugin.isPartOfTree(e.getBlock())) {
+			return;
+		}
 
-		if (plugin.isPartOfTree(e.getBlock())) {
 
 			// Dont show message when gravity is forced
 			if ( (!e.getPlayer().hasPermission("lumberjack.force") || e.getPlayer().hasPermission("lumberjack.force.ignore")) && e.getPlayer().hasPermission("lumberjack.use")) {
@@ -47,11 +50,15 @@ public class BlockBreakListener implements Listener {
 					}
 				}
 			}
+			
+		// check if axe has to be used
+		if(plugin.getConfig().getBoolean("must-use-axe")) {
+			if(!e.getPlayer().getInventory().getItemInMainHand().getType().name().toUpperCase().endsWith("_AXE")) {
+				return;
+			}
 		}
 
-		if (!plugin.isPartOfTree(e.getBlock())) {
-			return;
-		}
+		
 		
 		// fix for torch bug part 2
 		if(plugin.getConfig().getBoolean("prevent-torch-exploit") && !plugin.isAboveNonSolidBlock(e.getBlock())) {
