@@ -83,7 +83,7 @@ public class BlockBreakListener implements Listener {
 		if (plugin.getConfig().getBoolean("attached-logs-fall-down")) {
 
 			logs = new ArrayList<Block>();
-			plugin.getTreeTrunk(e.getBlock().getRelative(BlockFace.UP), logs);
+			plugin.getTreeTrunk(e.getBlock().getRelative(BlockFace.UP), logs,plugin.getFlavor(e.getBlock().getType()));
 			logs.remove(e.getBlock());
 
 			Collections.sort(logs, new Comparator<Block>() {

@@ -254,9 +254,10 @@ public class LumberJack extends JavaPlugin {
 	}
 
 	public Block[] getLogsAbove(Block block) {
+		String flavor = getFlavor(block.getType());
 		ArrayList<Block> list = new ArrayList<Block>();
 		Block currentBlock = block.getRelative(BlockFace.UP);
-		while (isPartOfTree(currentBlock) && list.size() < maxTreeSize) {
+		while (isPartOfTree(currentBlock) && list.size() < maxTreeSize && getFlavor(currentBlock.getType()).equalsIgnoreCase(flavor)) {
 			list.add(currentBlock);
 			currentBlock = currentBlock.getRelative(BlockFace.UP);
 		}
@@ -279,21 +280,49 @@ public class LumberJack extends JavaPlugin {
 		
 	}
 	
-	public void getTreeTrunk(Block block,ArrayList<Block> list) {
+	String getFlavor(Material mat) {
+		String name = mat.name().toLowerCase();
+		
+		if(name.contains("acacia")) {
+			return "acacia";
+		} else if (name.contains("birch")) {
+			return "birch";
+		} else if(name.contains("dark_oak")) {
+			return "dark_oak";
+		} else if(name.contains("oak")) {
+			return "oak";
+		} else if(name.contains("jungle")) {
+			return "jungle";
+		} else if(name.contains("spruce")) {
+			return "spruce";
+		} else {
+			return "none";
+		}
+		
+	}
+	
+	public void getTreeTrunk(Block block,ArrayList<Block> list,String flavor) {
 		BlockFace[] faces = {
 				BlockFace.UP,
 				BlockFace.EAST,BlockFace.WEST,BlockFace.NORTH,BlockFace.SOUTH,
 				BlockFace.SOUTH_WEST,BlockFace.SOUTH_EAST,BlockFace.NORTH_WEST,BlockFace.NORTH_EAST
 		};
 		
+		// remove this?
+		if(!getFlavor(block.getType()).equalsIgnoreCase(flavor)) {
+			return;
+		}
+		
 		Block currentBlock = block;
 		
-		if(isPartOfTree(currentBlock) && list.size()<maxTreeSize) {
+		if(isPartOfTree(currentBlock) && list.size()<maxTreeSize ) {
 			if(!list.contains(currentBlock)) {
 				list.add(currentBlock);
 				
 				for(BlockFace face:faces) {
-					getTreeTrunk(currentBlock.getRelative(face),list);
+					if(getFlavor(currentBlock.getRelative(face).getType()).equalsIgnoreCase(flavor)) {
+						getTreeTrunk(currentBlock.getRelative(face),list,flavor);
+					}
 				}
 				
 			}

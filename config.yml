@@ -66,6 +66,9 @@ check-for-updates: true
 #########################
 
 # You can set the blocks that will be counted as tree part
+# Trees will only be counted as trees if all the blocks have
+# the same type of wood, e.g. a mixture of acacia and oak
+# will not be counted as a whole tree
 # Default is all types of logs, wood, stripped log and stripped wood
 tree-blocks:
 - ACACIA_LOG
