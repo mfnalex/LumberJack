@@ -23,22 +23,22 @@ public class LumberJack extends JavaPlugin {
 	boolean gravityEnabledByDefault = false;
 	Messages messages;
 	UpdateChecker updateChecker;
-	private int currentConfigVersion = 5;
+	private int currentConfigVersion = 6;
 	private boolean usingMatchingConfig = true;
 
 	HashMap<Player, PlayerSetting> perPlayerSettings;
 	private int updateCheckInterval = 86400; //one day
 	
 	private ArrayList<String> treeBlockNames;
+	private ArrayList<String> treeGroundBlockNames;
 	
 
 	@Override
 	public void onEnable() {
 		
-		
-
 		createConfig();
 		treeBlockNames = (ArrayList<String>) getConfig().getStringList("tree-blocks");
+		treeGroundBlockNames = (ArrayList<String>) getConfig().getStringList("tree-ground-blocks");
 		
 		
 		messages = new Messages(this);
@@ -79,10 +79,10 @@ public class LumberJack extends JavaPlugin {
 	private void createConfig() {
 		saveDefaultConfig();
 		
-		if (getConfig().getInt("config-version", 0) < 3) {
+		if (getConfig().getInt("config-version", 0) < 6) {
 			getLogger().warning("========================================================");
 			getLogger().warning("You are using a config file that has been generated");
-			getLogger().warning("prior to LumberJack version 1.1.0.");
+			getLogger().warning("prior to LumberJack version 2.0.");
 			getLogger().warning("To allow everyone to use the new features, your config");
 			getLogger().warning("has been renamed to config.old.yml and a new one has");
 			getLogger().warning("been generated. Please examine the new config file to");
@@ -126,6 +126,7 @@ public class LumberJack extends JavaPlugin {
 		getConfig().addDefault("attached-logs-fall-down", true);
 		getConfig().addDefault("prevent-torch-exploit", true);
 		getConfig().addDefault("must-use-axe", true);
+		getConfig().addDefault("max-air-in-trunk", 1);
 		
 	}
 
@@ -157,12 +158,39 @@ public class LumberJack extends JavaPlugin {
 		return false;
 	}
 	
+	public boolean isOnTreeGround(Block block) {
+		
+		int maxAirInBetween = getConfig().getInt("max-air-in-trunk");
+		int airInBetween = 0;
+		Block currentBlock = block;
+		
+		while(isPartOfTree(currentBlock) || currentBlock.getType()==Material.AIR) {
+			
+			if(currentBlock.getType()==Material.AIR) {
+				airInBetween++;
+				if(airInBetween > maxAirInBetween) {
+					return false;
+				}
+			}
+			
+			currentBlock = currentBlock.getRelative(BlockFace.DOWN);
+		}
+		
+		for(String blockName : treeGroundBlockNames) {
+			if(Material.matchMaterial(blockName) != null) {
+				if(Material.matchMaterial(blockName) == currentBlock.getType()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public boolean isPartOfTree(Material mat) {
 		
 		for(String blockName : treeBlockNames) {
 			if(Material.matchMaterial(blockName) != null) {
 				if(Material.matchMaterial(blockName) == mat) {
-					//getLogger().warning(block.getType() + " IS TREE");
 					return true;
 				}
 			} else {
@@ -225,26 +253,6 @@ public class LumberJack extends JavaPlugin {
 		}
 	}
 
-//	public boolean isLog(Block block) {
-//		Material type = block.getType();
-//		for (String woodType : woodTypes) {
-//			if (type.name().equalsIgnoreCase(woodType + "_log")) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//
-//	public boolean isLeaves(Block block) {
-//		Material type = block.getType();
-//		for (String woodType : woodTypes) {
-//			if (type.name().equalsIgnoreCase(woodType + "_leaves")) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-
 	public Block[] getLogsAbove(Block block) {
 		ArrayList<Block> list = new ArrayList<Block>();
 		Block currentBlock = block.getRelative(BlockFace.UP);
@@ -259,13 +267,10 @@ public class LumberJack extends JavaPlugin {
 		
 		for(int height = block.getY()-1;height>=0;height--) {
 			Block candidate = block.getWorld().getBlockAt(block.getX(), height, block.getZ());
-			//System.out.println(String.format("checking if %s is solid:",candidate.getType().name()));
 			if(candidate.getType().isSolid()) {
-				//System.out.println("solid");
 				return true;
 			}
 			if(candidate.getType()!=Material.AIR) {
-				//System.out.println("air");
 				return false;
 			}
 			
@@ -273,10 +278,6 @@ public class LumberJack extends JavaPlugin {
 		return true;
 		
 	}
-	
-//	public boolean isTreePart(Block block) {
-//		return (isLog(block) || isLeaves(block));
-//	}
 	
 	public void getTreeTrunk(Block block,ArrayList<Block> list) {
 		BlockFace[] faces = {

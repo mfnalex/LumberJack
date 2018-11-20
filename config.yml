@@ -95,13 +95,33 @@ tree-blocks:
 
 # If the tree does not stand on one of the following blocks,
 # it will not be counted as a tree.
-# *** WILL BE IMPLEMENTED LATER ***
-# PLEASE LET ME KNOW IF YOU NEED THIS
-#tree-ground-blocks:
-#- GRASS_BLOCK
-#- DIRT
-#- COARSE_DIRT
-#- MYCELIUM
+tree-ground-blocks:
+- GRASS_BLOCK
+- DIRT
+- COARSE_DIRT
+- MYCELIUM
+
+#### THIS WILL BE IMPLEMENTED LATER ####
+# Parts of the tree that will be counted as leaves
+#### THIS WILL BE IMPLEMENTED LATER ####
+tree-leaves-blocks:
+- ACACIA_LEAVES
+- BIRCH_LEAVES
+- DARK_OAK_LEAVES
+- JUNGLE_LEAVES
+- OAK_LEAVES
+- SPRUCE_LEAVES
+
+#### THIS WILL BE IMPLEMENTED LATER ####
+# Minimum number of leaves that have to be present per log.
+# E.g. 0.1 means there has to be at least one block of leaves for every ten logs
+#### THIS WILL BE IMPLEMENTED LATER ####
+min-leaves-per-log-ratio: 0.1
+
+# Maximum number of air blocks that can be inside the tree trunk
+# If more than the specificied number of air blocks are present inside the trunk,
+# it will not be counted as a tree
+max-air-in-trunk: 1
 
 #########################
 ##### localization ######
@@ -139,4 +159,4 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #########################
 
 # please do not change the following line manually!
-config-version: 5
+config-version: 6
