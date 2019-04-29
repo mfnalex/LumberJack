@@ -127,6 +127,21 @@ min-leaves-per-log-ratio: 0.1
 max-air-in-trunk: 1
 
 #########################
+#### disabled worlds ####
+#########################
+
+# You can disable LumberJack for certain worlds. Each world's name has to
+# be on a separate line, starting with a hyphen and followed by a space
+
+# Example:
+#
+# disabled-worlds:
+# - world_nether
+# - world_the_end
+
+disabled-worlds:
+
+#########################
 ##### localization ######
 #########################
 
@@ -162,4 +177,4 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #########################
 
 # please do not change the following line manually!
-config-version: 6
+config-version: 7

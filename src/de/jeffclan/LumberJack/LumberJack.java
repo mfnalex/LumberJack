@@ -23,7 +23,8 @@ public class LumberJack extends JavaPlugin {
 	boolean gravityEnabledByDefault = false;
 	Messages messages;
 	UpdateChecker updateChecker;
-	private int currentConfigVersion = 6;
+	ArrayList<String> disabledWorlds;
+	private int currentConfigVersion = 7;
 	private boolean usingMatchingConfig = true;
 
 	HashMap<Player, PlayerSetting> perPlayerSettings;
@@ -127,6 +128,9 @@ public class LumberJack extends JavaPlugin {
 		getConfig().addDefault("prevent-torch-exploit", true);
 		getConfig().addDefault("must-use-axe", true);
 		getConfig().addDefault("max-air-in-trunk", 1);
+		
+		// Load disabled-worlds. If it does not exist in the config, it returns null. That's no problem
+		disabledWorlds = (ArrayList<String>) getConfig().getStringList("disabled-worlds");
 		
 	}
 

@@ -24,6 +24,11 @@ public class BlockBreakListener implements Listener {
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e) {
+		
+		// checking in lower case for lazy admins
+		if(plugin.disabledWorlds.contains(e.getBlock().getWorld().getName().toLowerCase())) {
+			return;
+		}
 
 		if (!plugin.isPartOfTree(e.getBlock())) {
 			return;

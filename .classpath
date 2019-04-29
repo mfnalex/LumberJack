@@ -7,5 +7,14 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="P:/BuildTools/Spigot/Spigot-API/target/spigot-api-1.13.2-R0.1-SNAPSHOT-shaded.jar"/>
+	<classpathentry kind="lib" path="/home/alex/.m2/repository/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-SNAPSHOT.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.spigotmc"/>
+			<attribute name="maven.artifactId" value="spigot-api"/>
+			<attribute name="maven.version" value="1.13.2-R0.1-SNAPSHOT"/>
+			<attribute name="maven.scope" value="provided"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
