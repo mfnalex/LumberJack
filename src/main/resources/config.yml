@@ -150,7 +150,7 @@ disabled-worlds:
 # &1 Dark Blue    &7 Gray       &d Light Purple
 # &2 Dark Green   &8 Dark Gray  &e Yellow
 # &3 Dark Aqua    &9 Blue       &f White
-# &4 Dark Red     &a Green     
+# &4 Dark Red     &a Green
 # &5 Dark Purple  &b Aqua
 
 # Available formatting codes:
@@ -171,6 +171,13 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #message-when-breaking-log: "&7Astuce: écris &6/lumberjack&7 pour activer la gravité d'arbre."
 #message-when-breaking-log2: "&7Astuce: écris &6/lumberjack&7 pour désactiver la gravité d'arbre."
 #message-can-not-disable: "&cVous n'avez pas la permission de désactiver la gravité d'arbre."
+
+##### Dutch - Thanks to Xeyame for translating -> https://github.com/Xeyame
+#message-gravity-enabled: "&7Boom-zwaartekracht is &aaan&7 gezet."
+#message-gravity-disabled: "&7Boom-zwaartekracht is &cuit&7 gezet."
+#message-when-breaking-log: "&7Hint: Tik &6/lumberjack&7 om Boom-zwaartekracht aan te zetten."
+#message-when-breaking-log2: "&7Hint: Tik &6/lumberjack&7 om Boom-zwaartekracht uit te zetten."
+#message-can-not-disable: "&cHet is niet toegestaan voor je om Boom-zwaartekracht aan te zetten."
 
 #########################
 #####     Done!     #####
