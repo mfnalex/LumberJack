@@ -179,6 +179,13 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #message-when-breaking-log2: "&7Lumberjack: Utiliza &6/lumberjack&7 para deshabilitar la gravedad de arboles."
 #message-can-not-disable: "&cNo tienes permitido deshabilitar la gravedad de arboles."
 
+##### Turkish (If u found an error contact with Cazcez#0190 on discord! || Hata bulursanız discord üzerinden Cazcez#0190 ile iletişime geçiniz)
+#message-gravity-enabled: "&7Ağaç yerçekimi &aaktifleştirildi&7."
+#message-gravity-disabled: "&7Ağaç yerçekimi &cdeaktifleştirildi&7."
+#message-when-breaking-log: "&7İpucu: Ağaç yerçekimini aktifleştirmek için &6/lumberjack&7 yazınız."
+#message-when-breaking-log2: "&7İpucu: Ağaç yerçekimini deaktifleştirmek için &6/lumberjack&7 yazınız."
+#message-can-not-disable: "&cAğaç yerçekimini deaktifleştirmek için yetkiniz yok."
+
 #########################
 #####     Done!     #####
 #########################
