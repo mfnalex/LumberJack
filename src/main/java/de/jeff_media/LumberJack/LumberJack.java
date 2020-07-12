@@ -1,10 +1,7 @@
 package de.jeff_media.LumberJack;
 
+import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,12 +10,14 @@ import org.bukkit.util.Vector;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 public class LumberJack extends JavaPlugin {
 
-    static final String[] woodTypes = {"acacia", "birch", "jungle", "oak", "dark_oak", "spruce"};
+    //static final String[] woodTypes = {"acacia", "birch", "jungle", "oak", "dark_oak", "spruce"};
     static final String[] treeBlocks = {
             "ACACIA_LOG","STRIPPED_ACACIA_LOG",
             "BIRCH_LOG","STRIPPED_BIRCH_LOG",
@@ -31,13 +30,13 @@ public class LumberJack extends JavaPlugin {
     };
     TreeUtils treeUtils;
     int maxTreeSize = 50;
-    Vector fallingBlockOffset = new Vector(0.5, 0.0, 0.5);
+    final Vector fallingBlockOffset = new Vector(0.5, 0.0, 0.5);
     boolean gravityEnabledByDefault = false;
     Messages messages;
-    UpdateChecker updateChecker;
+    PluginUpdateChecker updateChecker;
     ArrayList<String> disabledWorlds;
     HashMap<Player, PlayerSetting> perPlayerSettings;
-    private int currentConfigVersion = 7;
+    private final int currentConfigVersion = 9;
     private boolean usingMatchingConfig = true;
     private int updateCheckInterval = 86400; //one day
 
@@ -52,24 +51,26 @@ public class LumberJack extends JavaPlugin {
         //treeBlockNames = (ArrayList<String>) getConfig().getStringList("tree-blocks");
 
         treeBlockNames = new ArrayList<>();
-        for(String treeBlock : treeBlocks) {
-            treeBlockNames.add(treeBlock);
-        }
+        treeBlockNames.addAll(Arrays.asList(treeBlocks));
 
         //treeGroundBlockNames = (ArrayList<String>) getConfig().getStringList("tree-ground-blocks");
         messages = new Messages(this);
-        updateChecker = new UpdateChecker(this);
+        if(updateChecker != null) {
+            updateChecker.stop();
+        }
+        updateChecker = new PluginUpdateChecker(this, "https://api.jeff-media.de/lumberjack/lumberjack-latest-version.txt", "https://www.spigotmc.org/resources/1-13-1-16-lumberjack.60306/", "https://github.com/JEFF-Media-GbR/Spigot-LumberJack/blob/master/CHANGELOG.md", "https://chestsort.de/donate");
+        updateCheckInterval = (int) (getConfig().getDouble("check-interval")*60*60);
         treeUtils = new TreeUtils(this);
         BlockBreakListener blockBreakListener = new BlockBreakListener(this);
         BlockPlaceListener blockPlaceListener = new BlockPlaceListener(this);
         PlayerListener playerListener = new PlayerListener(this);
         CommandLumberjack commandLumberjack = new CommandLumberjack(this);
-        getCommand("lumberjack").setExecutor(commandLumberjack);
+        Objects.requireNonNull(getCommand("lumberjack")).setExecutor(commandLumberjack);
         getServer().getPluginManager().registerEvents(blockBreakListener, this);
         getServer().getPluginManager().registerEvents(blockPlaceListener, this);
         getServer().getPluginManager().registerEvents(playerListener, this);
 
-        perPlayerSettings = new HashMap<Player, PlayerSetting>();
+        perPlayerSettings = new HashMap<>();
 
         gravityEnabledByDefault = getConfig().getBoolean("gravity-enabled-by-default");
 
@@ -80,54 +81,31 @@ public class LumberJack extends JavaPlugin {
         metrics.addCustomChart(new Metrics.SimplePie("attached_logs_fall_down", () -> Boolean.toString(getConfig().getBoolean("attached-logs-fall-down"))));
         metrics.addCustomChart(new Metrics.SimplePie("prevent_torch_exploit", () -> Boolean.toString(getConfig().getBoolean("prevent-torch-exploit"))));
 
-        if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("true")) {
-            Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-                public void run() {
-                    updateChecker.checkForUpdate();
-                }
-            }, 0L, updateCheckInterval * 20);
-        } else if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("on-startup")) {
-            updateChecker.checkForUpdate();
+        if (Objects.requireNonNull(getConfig().getString("check-for-updates", "true")).equalsIgnoreCase("true")) {
+            updateChecker.check(updateCheckInterval);
+        } // When set to on-startup, we check right now (delay 0)
+        else if (Objects.requireNonNull(getConfig().getString("check-for-updates", "true")).equalsIgnoreCase("on-startup")) {
+            updateChecker.check();
         }
+    }
+
+    private void showOldConfigWarning() {
+        getLogger().warning("==============================================");
+        getLogger().warning("You were using an old config file. LumberJack");
+        getLogger().warning("has updated the file to the newest version.");
+        getLogger().warning("Your changes have been kept.");
+        getLogger().warning("==============================================");
     }
 
     private void createConfig() {
         saveDefaultConfig();
 
-        if (getConfig().getInt("config-version", 0) < 6) {
-            getLogger().warning("========================================================");
-            getLogger().warning("You are using a config file that has been generated");
-            getLogger().warning("prior to LumberJack version 2.0.");
-            getLogger().warning("To allow everyone to use the new features, your config");
-            getLogger().warning("has been renamed to config.old.yml and a new one has");
-            getLogger().warning("been generated. Please examine the new config file to");
-            getLogger().warning("see the new possibilities and adjust your settings.");
-            getLogger().warning("========================================================");
-
-            File configFile = new File(getDataFolder().getAbsolutePath() + File.separator + "config.yml");
-            File oldConfigFile = new File(getDataFolder().getAbsolutePath() + File.separator + "config.old.yml");
-            if (oldConfigFile.getAbsoluteFile().exists()) {
-                oldConfigFile.getAbsoluteFile().delete();
-            }
-            configFile.getAbsoluteFile().renameTo(oldConfigFile.getAbsoluteFile());
-            saveDefaultConfig();
-            try {
-                getConfig().load(configFile.getAbsoluteFile());
-            } catch (IOException | org.bukkit.configuration.InvalidConfigurationException e) {
-                getLogger().warning("Could not load freshly generated config file!");
-                e.printStackTrace();
-            }
-        } else if (getConfig().getInt("config-version", 0) != currentConfigVersion) {
-            getLogger().warning("========================================================");
-            getLogger().warning("YOU ARE USING AN OLD CONFIG FILE!");
-            getLogger().warning("This is not a problem, as LumberJack will just use the");
-            getLogger().warning("default settings for unset values. However, if you want");
-            getLogger().warning("to configure the new options, please go to");
-            getLogger().warning("https://www.spigotmc.org/resources/1-13-lumberjack.60306/");
-            getLogger().warning("and replace your config.yml with the new one. You can");
-            getLogger().warning("then insert your old changes into the new file.");
-            getLogger().warning("========================================================");
-            usingMatchingConfig = false;
+        if (getConfig().getInt("config-version", 0) != currentConfigVersion) {
+            showOldConfigWarning();
+            ConfigUpdater configUpdater = new ConfigUpdater(this);
+            configUpdater.updateConfig();
+            usingMatchingConfig = true;
+            //createConfig();
         }
 
         File playerDataFolder = new File(getDataFolder().getPath() + File.separator + "playerdata");

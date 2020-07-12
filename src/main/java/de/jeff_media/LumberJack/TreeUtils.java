@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class TreeUtils {
 
-    private LumberJack main;
+    private final LumberJack main;
 
     TreeUtils(LumberJack main) {
         this.main=main;
     }
 
 
-    final static Material[] getValidGroundTypes(Material mat) {
+    static Material[] getValidGroundTypes(Material mat) {
         switch(mat) {
             case ACACIA_LOG:
             case BIRCH_LOG:
@@ -50,7 +50,7 @@ public class TreeUtils {
         return null;
     }
 
-    final static boolean matchesTree(Material orig, Material now) {
+    static boolean matchesTree(Material orig, Material now) {
         switch(now) {
             case ACACIA_LOG:
             case ACACIA_LEAVES:
@@ -145,13 +145,13 @@ public class TreeUtils {
 
     Block[] getLogsAbove(Block block) {
         String flavor = getFlavor(block.getType());
-        ArrayList<Block> list = new ArrayList<Block>();
+        ArrayList<Block> list = new ArrayList<>();
         Block currentBlock = block.getRelative(BlockFace.UP);
         while (isPartOfTree(currentBlock) && list.size() < main.maxTreeSize && getFlavor(currentBlock.getType()).equalsIgnoreCase(flavor)) {
             list.add(currentBlock);
             currentBlock = currentBlock.getRelative(BlockFace.UP);
         }
-        return list.toArray(new Block[list.size()]);
+        return list.toArray(new Block[0]);
     }
 
     static boolean isAboveNonSolidBlock(Block block) {

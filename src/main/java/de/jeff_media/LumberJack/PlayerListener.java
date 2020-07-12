@@ -7,20 +7,15 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerListener implements Listener {
 	
-	LumberJack plugin;
+	final LumberJack plugin;
 	
-	public PlayerListener(LumberJack plugin) {
+	PlayerListener(LumberJack plugin) {
 		this.plugin=plugin;
 	}
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		plugin.registerPlayer(e.getPlayer());
-		
-		if (e.getPlayer().isOp()) {
-			plugin.updateChecker.sendUpdateMessage(e.getPlayer());
-		}
-		
 	}
 	
 	@EventHandler

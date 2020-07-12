@@ -2,8 +2,8 @@ package de.jeff_media.LumberJack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -16,9 +16,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public class BlockBreakListener implements Listener {
 
-	LumberJack plugin;
+	final LumberJack plugin;
 
-	public BlockBreakListener(LumberJack plugin) {
+	BlockBreakListener(LumberJack plugin) {
 		this.plugin = plugin;
 	}
 
@@ -87,23 +87,15 @@ public class BlockBreakListener implements Listener {
 		// Atached logs fall down
 		if (plugin.getConfig().getBoolean("attached-logs-fall-down")) {
 
-			logs = new ArrayList<Block>();
+			logs = new ArrayList<>();
 			TreeUtils.getTreeTrunk2(e.getBlock().getRelative(BlockFace.UP), logs,e.getBlock().getType());
 			logs.remove(e.getBlock());
 
-			Collections.sort(logs, new Comparator<Block>() {
-				public int compare(Block b1, Block b2) {
-					if (b1.getY() < b2.getY())
-						return -1;
-					if (b1.getY() > b2.getY())
-						return 1;
-					return 0;
-				}
-			});
+			logs.sort(Comparator.comparingInt(Block::getY));
 
 		} else {
 
-			logs = new ArrayList<Block>(Arrays.asList(plugin.treeUtils.getLogsAbove(e.getBlock())));
+			logs = new ArrayList<>(Arrays.asList(plugin.treeUtils.getLogsAbove(e.getBlock())));
 
 		}
 
@@ -120,7 +112,7 @@ public class BlockBreakListener implements Listener {
 
 				BlockData blockData = logAbove.getBlockData().clone();
 				logAbove.setType(Material.AIR);
-				logAbove.getLocation().getWorld()
+				Objects.requireNonNull(logAbove.getLocation().getWorld())
 						.spawnFallingBlock(logAbove.getLocation().add(plugin.fallingBlockOffset), blockData);
 
 			}

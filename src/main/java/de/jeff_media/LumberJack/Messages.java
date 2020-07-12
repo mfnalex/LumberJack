@@ -6,7 +6,7 @@ import org.bukkit.ChatColor;
 public class Messages {
 
 
-	LumberJack plugin;
+	final LumberJack plugin;
 
 	final String MSG_ACTIVATED, MSG_DEACTIVATED, MSG_COMMANDMESSAGE, MSG_COMMANDMESSAGE2, MSG_CAN_NOT_DISABLE;
 

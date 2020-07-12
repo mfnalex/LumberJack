@@ -6,9 +6,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
+import java.util.Objects;
+
 public class BlockPlaceListener implements Listener {
 	
-	private LumberJack plugin;
+	private final LumberJack plugin;
 	
 	BlockPlaceListener(LumberJack plugin) {
 		this.plugin=plugin;
@@ -29,7 +31,7 @@ public class BlockPlaceListener implements Listener {
 		
 		//System.out.println("possible conflicting block has been placed");
 		
-		for(Entity entity : e.getBlock().getLocation().getWorld().getEntities()) {
+		for(Entity entity : Objects.requireNonNull(e.getBlock().getLocation().getWorld()).getEntities()) {
 			
 			//System.out.println(entity.getType().name());
 			
