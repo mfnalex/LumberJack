@@ -65,55 +65,40 @@ check-for-updates: true
 ##### tree blocks  ######
 #########################
 
+#### THIS HAS BEEN TEMPORARILY REMOVED ####
 # You can set the blocks that will be counted as tree part
 # Trees will only be counted as trees if all the blocks have
 # the same type of wood, e.g. a mixture of acacia and oak
 # will not be counted as a whole tree
 # Default is all types of logs, wood, stripped log and stripped wood
-tree-blocks:
-- ACACIA_LOG
-- ACACIA_WOOD
-- BIRCH_LOG
-- BIRCH_WOOD
-- DARK_OAK_LOG
-- DARK_OAK_WOOD
-- JUNGLE_LOG
-- JUNGLE_WOOD
-- OAK_LOG
-- OAK_WOOD
-- SPRUCE_LOG
-- SPRUCE_WOOD
-- STRIPPED_ACACIA_LOG
-- STRIPPED_ACACIA_WOOD
-- STRIPPED_BIRCH_LOG
-- STRIPPED_BIRCH_WOOD
-- STRIPPED_DARK_OAK_LOG
-- STRIPPED_DARK_OAK_WOOD
-- STRIPPED_JUNGLE_LOG
-- STRIPPED_JUNGLE_WOOD
-- STRIPPED_OAK_LOG
-- STRIPPED_OAK_WOOD
-- STRIPPED_SPRUCE_LOG
-- STRIPPED_SPRUCE_WOOD
+#### THIS HAS BEEN TEMPORARILY REMOVED ####
+#tree-types:
+#  - ACACIA_LOG
+#  - BIRCH_LOG
+#  - DARK_OAK_LOG
+#  - JUNGLE_LOG
+#  - OAK_LOG
+#  - SPRUCE_LOG
+#  - STRIPPED_ACACIA_LOG
+#  - STRIPPED_BIRCH_LOG
+#  - STRIPPED_DARK_OAK_LOG
+#  - STRIPPED_JUNGLE_LOG
+#  - STRIPPED_OAK_LOG
+#  - STRIPPED_SPRUCE_LOG
+#  - CRIMSON_STEMS
+#  - WARPED_STEM
 
+#### THIS HAS BEEN TEMPORARILY REMOVED ####
 # If the tree does not stand on one of the following blocks,
 # it will not be counted as a tree.
-tree-ground-blocks:
-- GRASS_BLOCK
-- DIRT
-- COARSE_DIRT
-- MYCELIUM
-
-#### THIS WILL BE IMPLEMENTED LATER ####
-# Parts of the tree that will be counted as leaves
-#### THIS WILL BE IMPLEMENTED LATER ####
-tree-leaves-blocks:
-- ACACIA_LEAVES
-- BIRCH_LEAVES
-- DARK_OAK_LEAVES
-- JUNGLE_LEAVES
-- OAK_LEAVES
-- SPRUCE_LEAVES
+#### THIS HAS BEEN TEMPORARILY REMOVED ####
+#tree-ground-blocks:
+#- GRASS_BLOCK
+#- DIRT
+#- COARSE_DIRT
+#- MYCELIUM
+#- CRIMSON_NYLIUM
+#- WARPED_NYLIUM
 
 #### THIS WILL BE IMPLEMENTED LATER ####
 # Minimum number of leaves that have to be present per log.

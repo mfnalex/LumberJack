@@ -1,7 +1,6 @@
-package de.jeffclan.LumberJack;
+package de.jeff_media.LumberJack;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,7 +51,7 @@ public class BlockPlaceListener implements Listener {
 				continue;
 			}
 			
-			if(plugin.isPartOfTree(fallingBlock.getBlockData().getMaterial())) {
+			if(plugin.treeUtils.isPartOfTree(fallingBlock.getBlockData().getMaterial())) {
 				e.setCancelled(true);
 			}
 			
