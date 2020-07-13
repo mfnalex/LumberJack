@@ -137,7 +137,8 @@ public class TreeUtils {
                     return true;
                 }
             } else {
-                main.getLogger().warning("Block type not found: " + blockName);
+                //main.getLogger().warning("Block type not found: " + blockName);
+                // TODO: Build list of Materials only once, then cache it to avoid String->Material conversion on every block break
             }
         }
 

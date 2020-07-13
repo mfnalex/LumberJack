@@ -1,4 +1,7 @@
 # Changelog
+## 2.3.2
+- Fixed message "Block type not found: WARPED_STEM" (etc.) spamming console in MC versions < 1.16
+
 ## 2.3.1
 - Added podzol as valid ground block
 
