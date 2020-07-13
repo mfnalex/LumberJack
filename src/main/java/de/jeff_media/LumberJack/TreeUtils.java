@@ -33,7 +33,8 @@ public class TreeUtils {
                         Material.DIRT,
                         Material.GRASS_BLOCK,
                         Material.MYCELIUM,
-                        Material.COARSE_DIRT};
+                        Material.COARSE_DIRT,
+                        Material.PODZOL};
         }
         switch(mat.name()) {
             case "CRIMSON_STEM":
