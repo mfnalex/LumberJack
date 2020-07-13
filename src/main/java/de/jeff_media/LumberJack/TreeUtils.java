@@ -98,7 +98,7 @@ public class TreeUtils {
                     return true;
                 }
             } else {
-                main.getLogger().warning("Block type not found: " + blockName);
+                //main.getLogger().warning("Block type not found: " + blockName);
             }
         }
 
