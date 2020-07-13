@@ -1,4 +1,7 @@
 # Changelog
+## 2.3.1
+- Added podzol as valid ground block
+
 ## 2.3.0
 - Added support for blocks with upper-diagonal blocks like acacia or dark oak
 - Added support for crimson and warped fungus trees
