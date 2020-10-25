@@ -1,4 +1,12 @@
 # Changelog
+
+## 2.3.4
+- Fixed support for GriefPrevention, WorldGuard and other protection plugins
+- Added Dutch translation
+
+## 2.3.3
+- Added support for GriefPrevention and other protection plugins
+
 ## 2.3.2
 - Fixed message "Block type not found: WARPED_STEM" (etc.) spamming console in MC versions < 1.16
 

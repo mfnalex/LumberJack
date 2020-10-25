@@ -157,6 +157,13 @@ message-when-breaking-log: "&7Hint: Type &6/lumberjack&7 to enable tree gravity.
 message-when-breaking-log2: "&7Hint: Type &6/lumberjack&7 to disable tree gravity."
 message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 
+##### Dutch
+#message-gravity-enabled: "&7Boom-zwaartekracht is &aaan&7 gezet."
+#message-gravity-disabled: "&7Boom-zwaartekracht is &cuit&7 gezet."
+#message-when-breaking-log: "&7Hint: Tik &6/lumberjack&7 om Boom-zwaartekracht aan te zetten."
+#message-when-breaking-log2: "&7Hint: Tik &6/lumberjack&7 om Boom-zwaartekracht uit te zetten."
+#message-can-not-disable: "&cHet is niet toegestaan voor je om Boom-zwaartekracht aan te zetten."
+
 ##### French
 #message-gravity-enabled: "&7La gravité d'arbre a été &aactivée&7."
 #message-gravity-disabled: "&7La gravité d'arbre a été &cdésactivée&7."

@@ -39,7 +39,7 @@ public class LumberJack extends JavaPlugin {
     private final int currentConfigVersion = 9;
     private boolean usingMatchingConfig = true;
     private int updateCheckInterval = 86400; //one day
-
+    boolean debug = false;
     ArrayList<String> treeBlockNames;
     //ArrayList<String> treeGroundBlockNames;
 

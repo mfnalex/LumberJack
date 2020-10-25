@@ -11,6 +11,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -24,11 +25,12 @@ public class BlockBreakListener implements Listener {
 		this.plugin = plugin;
 	}
 
-	@EventHandler(ignoreCancelled = true)
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
 	public void onBlockBreak(BlockBreakEvent e) {
 		
 		// checking in lower case for lazy admins
 		if(plugin.disabledWorlds.contains(e.getBlock().getWorld().getName().toLowerCase())) {
+
 			return;
 		}
 
