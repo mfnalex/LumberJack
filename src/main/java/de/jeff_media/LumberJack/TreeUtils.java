@@ -40,12 +40,14 @@ public class TreeUtils {
             case "CRIMSON_STEM":
             case "STRIPPED_CRIMSON_STEM":
                 return new Material[]{
-                        Material.CRIMSON_NYLIUM
+                        Material.CRIMSON_NYLIUM,
+                        Material.NETHERRACK
                 };
             case "WARPED_STEM":
             case "WARPED_CRIMSON_STEM":
                 return new Material[]{
-                        Material.WARPED_NYLIUM
+                        Material.WARPED_NYLIUM,
+                        Material.NETHERRACK
                 };
         }
         return null;
