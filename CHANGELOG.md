@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.6
+- Updated API to 1.16.5
+
+## 2.3.5
+- Fixed nether tree detection
+
 ## 2.3.4
 - Fixed support for GriefPrevention, WorldGuard and other protection plugins
 - Added Dutch translation
