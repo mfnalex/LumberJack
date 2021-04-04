@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.0
+- Fixed torch exploit one and for all by adding NBT Tags to falling blocks.
+- Added "prevent-torch-exploit-aggressive" that will prevent the logs from breaking even if a player somehow bypasses the torch exploit detection.
+- Torch exploit prevention works with all other blocks (slabs, snow, carpet, ...) as well!
+
 ## 2.3.6
 - Updated API to 1.16.5
 

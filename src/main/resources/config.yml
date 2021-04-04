@@ -27,12 +27,17 @@ must-use-axe: true
 # should also fall down
 attached-logs-fall-down: true
 
-# Prevents the placement of torches or other non-solid
-# blocks inside or under falling logs.
+# Prevents the placement of torches or other blocks
+# inside or under falling logs.
 # Also prevents the logs from starting to fall down
 # when the first block below the log (except air)
 # is not solid.
 prevent-torch-exploit: true
+
+# Prevents falling logs from dropping into items if the
+# player somehow manages to circumvent the torch exploit
+# prevention.
+prevent-torch-exploit-aggressive: false
 
 # when set to true, players with gravity DISABLED will be
 # shown a message on how to enable tree gravity

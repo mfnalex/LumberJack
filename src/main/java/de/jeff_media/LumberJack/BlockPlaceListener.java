@@ -1,5 +1,6 @@
 package de.jeff_media.LumberJack;
 
+import de.jeff_media.nbtapi.NBTAPI;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.event.EventHandler;
@@ -7,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class BlockPlaceListener implements Listener {
 	
@@ -25,23 +27,24 @@ public class BlockPlaceListener implements Listener {
 			return;
 		}
 		
-		if(e.getBlockPlaced().getType().isSolid()) {
-			return;
-		}
-		
 		//System.out.println("possible conflicting block has been placed");
 		
-		for(Entity entity : Objects.requireNonNull(e.getBlock().getLocation().getWorld()).getEntities()) {
+		for(Entity entity : e.getBlock().getLocation().getWorld().getNearbyEntities(e.getBlock().getLocation(), 0, 256, 0, new Predicate<Entity>() {
+			@Override
+			public boolean test(Entity entity) {
+				return entity instanceof FallingBlock;
+			}
+		})) {
 			
 			//System.out.println(entity.getType().name());
-			
-			if(!(entity instanceof FallingBlock)) {
-				continue;
-			}
 			
 			//System.out.println(("falling block detected while block was placed"));
 			
 			FallingBlock fallingBlock = (FallingBlock) entity;
+
+			if(!NBTAPI.hasNBT(fallingBlock,NBTKeys.IS_FALLING_LOG)) {
+				continue;
+			}
 			
 			if(fallingBlock.getLocation().getBlockX() != e.getBlockPlaced().getLocation().getBlockX()) {
 				continue;
@@ -53,9 +56,9 @@ public class BlockPlaceListener implements Listener {
 				continue;
 			}
 			
-			if(plugin.treeUtils.isPartOfTree(fallingBlock.getBlockData().getMaterial())) {
-				e.setCancelled(true);
-			}
+			//if(plugin.treeUtils.isPartOfTree(fallingBlock.getBlockData().getMaterial())) {
+			e.setCancelled(true);
+			//}
 			
 		}
 	}

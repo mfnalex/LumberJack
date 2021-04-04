@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 
+import de.jeff_media.nbtapi.NBTAPI;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -116,9 +118,14 @@ public class BlockBreakListener implements Listener {
 
 				BlockData blockData = logAbove.getBlockData().clone();
 				logAbove.setType(Material.AIR);
-				Objects.requireNonNull(logAbove.getLocation().getWorld())
+				FallingBlock fallingBlock = logAbove.getLocation().getWorld()
 						.spawnFallingBlock(logAbove.getLocation().add(plugin.fallingBlockOffset), blockData);
-
+				if(plugin.getConfig().getBoolean("prevent-torch-exploit")) {
+					NBTAPI.addNBT(fallingBlock, NBTKeys.IS_FALLING_LOG, NBTValues.TRUE);
+				}
+				if(plugin.getConfig().getBoolean("prevent-torch-exploit-aggressive")) {
+					fallingBlock.setDropItem(false);
+				}
 			}
 
 		}
