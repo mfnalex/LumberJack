@@ -35,7 +35,7 @@ attached-logs-fall-down: true
 prevent-torch-exploit: true
 
 # Prevents falling logs from dropping into items if the
-# player somehow manages to circumvent the torch exploit
+# player somehow manages to bypass the torch exploit
 # prevention.
 prevent-torch-exploit-aggressive: false
 
@@ -195,4 +195,4 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #########################
 
 # please do not change the following line manually!
-config-version: 9
+config-version: 10

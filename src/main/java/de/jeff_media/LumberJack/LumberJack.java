@@ -1,6 +1,7 @@
 package de.jeff_media.LumberJack;
 
 import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
+import de.jeff_media.nbtapi.NBTAPI;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -36,7 +37,7 @@ public class LumberJack extends JavaPlugin {
     PluginUpdateChecker updateChecker;
     ArrayList<String> disabledWorlds;
     HashMap<Player, PlayerSetting> perPlayerSettings;
-    private final int currentConfigVersion = 9;
+    private final int currentConfigVersion = 10;
     private boolean usingMatchingConfig = true;
     private int updateCheckInterval = 86400; //one day
     boolean debug = false;
@@ -46,6 +47,8 @@ public class LumberJack extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        NBTAPI.init(this);
 
         createConfig();
         //treeBlockNames = (ArrayList<String>) getConfig().getStringList("tree-blocks");

@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.4.1
+- Updated config version so the auto config updater can add the new option from 2.4.0 (sorry I forgot that in 2.4.0)
+
 ## 2.4.0
 - Fixed torch exploit one and for all by adding NBT Tags to falling blocks.
 - Added "prevent-torch-exploit-aggressive" that will prevent the logs from breaking even if a player somehow bypasses the torch exploit detection.

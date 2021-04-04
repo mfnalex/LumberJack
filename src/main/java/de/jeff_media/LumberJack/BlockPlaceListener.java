@@ -29,7 +29,7 @@ public class BlockPlaceListener implements Listener {
 		
 		//System.out.println("possible conflicting block has been placed");
 		
-		for(Entity entity : e.getBlock().getLocation().getWorld().getNearbyEntities(e.getBlock().getLocation(), 0, 256, 0, new Predicate<Entity>() {
+		for(Entity entity : e.getBlock().getLocation().getWorld().getNearbyEntities(e.getBlock().getLocation(), 1, 256, 1, new Predicate<Entity>() {
 			@Override
 			public boolean test(Entity entity) {
 				return entity instanceof FallingBlock;
@@ -58,6 +58,7 @@ public class BlockPlaceListener implements Listener {
 			
 			//if(plugin.treeUtils.isPartOfTree(fallingBlock.getBlockData().getMaterial())) {
 			e.setCancelled(true);
+			e.getPlayer().updateInventory();
 			//}
 			
 		}
