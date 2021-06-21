@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.0
+
+Huge improvements!
+
+- Added option for faster leave decay (disabled by default)
+  - Configurable, random delay for decay
+- Player placed logs will no longer be detected
+  - Only works for logs placed after installing this update
+  - Works WITHOUT any database, etc
+
 ## 2.4.1
 
 - Updated config version so the auto config updater can add the new option from 2.4.0 (sorry I forgot that in 2.4.0)
