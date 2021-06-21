@@ -23,6 +23,16 @@ gravity-enabled-by-default: false
 # player used an axe to break the log.
 must-use-axe: true
 
+# When enabled, leaves will decay within the given duration
+fast-leaves-decay: false
+
+# The amount of seconds it takes at most to have leaves decay.
+fast-leaves-decay-duration: 10
+
+# When true, only naturally generated (world generation or via sapling) trees will have gravity
+# When false, logs placed by players will also have gravity
+only-natural-logs: true
+
 # Whether logs attached at the side or diagonally of the tree trunk
 # should also fall down
 attached-logs-fall-down: true
@@ -33,6 +43,11 @@ attached-logs-fall-down: true
 # when the first block below the log (except air)
 # is not solid.
 prevent-torch-exploit: true
+
+# Maximum number of air blocks that can be inside the tree trunk
+# If more than the specificied number of air blocks are present inside the trunk,
+# it will not be counted as a tree
+max-air-in-trunk: 1
 
 # Prevents falling logs from dropping into items if the
 # player somehow manages to bypass the torch exploit
@@ -72,56 +87,6 @@ check-for-updates: true
 # When you set "check-for-updates" to true, you can define the amount
 # of hours inbetween each update check.
 check-interval: 4
-
-#########################
-##### tree blocks  ######
-#########################
-
-#### THIS HAS BEEN TEMPORARILY REMOVED ####
-# You can set the blocks that will be counted as tree part
-# Trees will only be counted as trees if all the blocks have
-# the same type of wood, e.g. a mixture of acacia and oak
-# will not be counted as a whole tree
-# Default is all types of logs, wood, stripped log and stripped wood
-#### THIS HAS BEEN TEMPORARILY REMOVED ####
-#tree-types:
-#  - ACACIA_LOG
-#  - BIRCH_LOG
-#  - DARK_OAK_LOG
-#  - JUNGLE_LOG
-#  - OAK_LOG
-#  - SPRUCE_LOG
-#  - STRIPPED_ACACIA_LOG
-#  - STRIPPED_BIRCH_LOG
-#  - STRIPPED_DARK_OAK_LOG
-#  - STRIPPED_JUNGLE_LOG
-#  - STRIPPED_OAK_LOG
-#  - STRIPPED_SPRUCE_LOG
-#  - CRIMSON_STEMS
-#  - WARPED_STEM
-
-#### THIS HAS BEEN TEMPORARILY REMOVED ####
-# If the tree does not stand on one of the following blocks,
-# it will not be counted as a tree.
-#### THIS HAS BEEN TEMPORARILY REMOVED ####
-#tree-ground-blocks:
-#- GRASS_BLOCK
-#- DIRT
-#- COARSE_DIRT
-#- MYCELIUM
-#- CRIMSON_NYLIUM
-#- WARPED_NYLIUM
-
-#### THIS WILL BE IMPLEMENTED LATER ####
-# Minimum number of leaves that have to be present per log.
-# E.g. 0.1 means there has to be at least one block of leaves for every ten logs
-#### THIS WILL BE IMPLEMENTED LATER ####
-min-leaves-per-log-ratio: 0.1
-
-# Maximum number of air blocks that can be inside the tree trunk
-# If more than the specificied number of air blocks are present inside the trunk,
-# it will not be counted as a tree
-max-air-in-trunk: 1
 
 #########################
 #### disabled worlds ####
@@ -195,4 +160,4 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #########################
 
 # please do not change the following line manually!
-config-version: 10
+config-version: 11

@@ -1,17 +1,17 @@
-main: de.jeff_media.LumberJack.LumberJack
+main: de.jeff_media.lumberjack.LumberJack
 name: LumberJack
-version: 2.4.1
+version: 3.0.0
 api-version: "1.13"
-description: Enable gravity for trees
+description: Better tree felling - tree gravity & fast leaves decay
 author: mfnalex
 prefix: LumberJack
 database: false
-website: https://www.spigotmc.org/resources/1-13-lumberjack.60306/
+website: https://www.mfnalex.de/
 commands:
   lumberjack:
     description: Toggle gravity for tree trunks
     permission: lumberjack.use
-    aliases: [treegravity,tg,gravity]
+    aliases: [ treegravity,tg,gravity ]
 permissions:
   lumberjack.use:
     description: Allows usage of the command /lumberjack

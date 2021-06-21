@@ -1,22 +1,27 @@
-package de.jeff_media.LumberJack;
+package de.jeff_media.lumberjack.config;
 
-import java.io.*;
+import de.jeff_media.lumberjack.LumberJack;
+import de.jeff_media.lumberjack.utils.FileUtils;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
 
 public class ConfigUpdater {
 
     final LumberJack main;
 
-    ConfigUpdater(LumberJack plugin) {
+    public ConfigUpdater(LumberJack plugin) {
         this.main = plugin;
     }
 
@@ -24,10 +29,10 @@ public class ConfigUpdater {
     // config version
     // Don't worry! Your changes will be kept
 
-    void updateConfig() {
+    public void updateConfig() {
 
         try {
-            Files.deleteIfExists(new File(main.getDataFolder().getAbsolutePath()+File.separator+"config.old.yml").toPath());
+            Files.deleteIfExists(new File(main.getDataFolder().getAbsolutePath() + File.separator + "config.old.yml").toPath());
         } catch (IOException ignored) {
 
         }
@@ -51,7 +56,7 @@ public class ConfigUpdater {
         try {
 
             Scanner scanner = new Scanner(
-                    new File(main.getDataFolder().getAbsolutePath() + File.separator + "config.yml"),"UTF-8");
+                    new File(main.getDataFolder().getAbsolutePath() + File.separator + "config.yml"), "UTF-8");
             while (scanner.hasNextLine()) {
                 linesInDefaultConfig.add(scanner.nextLine() + "");
             }
@@ -96,7 +101,7 @@ public class ConfigUpdater {
         BufferedWriter fw;
         String[] linesArray = newLines.toArray(new String[linesInDefaultConfig.size()]);
         try {
-            fw = Files.newBufferedWriter(new File(main.getDataFolder().getAbsolutePath(),"config.yml").toPath(),StandardCharsets.UTF_8);
+            fw = Files.newBufferedWriter(new File(main.getDataFolder().getAbsolutePath(), "config.yml").toPath(), StandardCharsets.UTF_8);
             for (String s : linesArray) {
                 //System.out.println("WRITING LINE: "+linesArray[i]);
                 fw.write(s + "\n");
