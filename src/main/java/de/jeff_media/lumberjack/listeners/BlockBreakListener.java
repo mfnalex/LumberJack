@@ -33,10 +33,20 @@ public class BlockBreakListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onLeavesBreak(BlockBreakEvent event) {
-        if(event.getBlock().getState() instanceof Leaves) {
-            if(((Leaves)event.getBlock().getState()).isPersistent()) return;
-            plugin.getCustomDropManager().doCustomDrops(event.getBlock().getLocation(),event.getBlock().getType());
+
+        if (!(event.getBlock().getBlockData() instanceof Leaves) && !event.getBlock().getType().name().endsWith("_WART_BLOCK")) {
+            return;
         }
+
+        if (event.getBlock().getBlockData() instanceof Leaves) {
+            if (((Leaves) event.getBlock().getBlockData()).isPersistent()) {
+                return;
+            }
+        }
+        if (BlockTracker.isPlayerPlacedBlock(event.getBlock())) {
+            return;
+        }
+        plugin.getCustomDropManager().doCustomDrops(event.getBlock().getLocation(), event.getBlock().getType());
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
@@ -44,23 +54,19 @@ public class BlockBreakListener implements Listener {
 
         // checking in lower case for lazy admins
         if (plugin.disabledWorlds.contains(event.getBlock().getWorld().getName().toLowerCase())) {
-            System.out.println(0);
             return;
         }
 
         if (!plugin.treeUtils.isPartOfTree(event.getBlock())) {
-            System.out.println(1);
             return;
         }
 
         if (!plugin.treeUtils.isOnTreeGround(event.getBlock())) {
-            System.out.println(2);
             return;
         }
 
         // Tree gravity does not work for player placed blocks
         if (plugin.getConfig().getBoolean("only-natural-logs") && BlockTracker.isPlayerPlacedBlock(event.getBlock())) {
-            System.out.println(3);
             return;
         }
 
@@ -89,39 +95,33 @@ public class BlockBreakListener implements Listener {
         // check if axe has to be used
         if (plugin.getConfig().getBoolean("must-use-axe")) {
             if (!event.getPlayer().getInventory().getItemInMainHand().getType().name().toUpperCase().endsWith("_AXE")) {
-                System.out.println(4);
                 return;
             }
             AxeMaterial requiredAxe = AxeMaterial.get(plugin.getConfig().getString("requires-at-least"));
-            if(!AxeMaterial.isAtLeast(event.getPlayer().getInventory().getItemInMainHand().getType(),requiredAxe)) {
-                System.out.println(5);
+            if (!AxeMaterial.isAtLeast(event.getPlayer().getInventory().getItemInMainHand().getType(), requiredAxe)) {
                 return;
             }
         }
 
         // check if player must sneak
-        if(plugin.getConfig().getBoolean("must-sneak")) {
-            if(!event.getPlayer().isSneaking()) {
-                System.out.println(6);
+        if (plugin.getConfig().getBoolean("must-sneak")) {
+            if (!event.getPlayer().isSneaking()) {
                 return;
             }
         }
 
         // fix for torch bug part 2
         if (plugin.getConfig().getBoolean("prevent-torch-exploit") && !TreeUtils.isAboveNonSolidBlock(event.getBlock())) {
-            System.out.println(7);
             return;
         }
 
         if (!plugin.getPlayerSetting(event.getPlayer()).gravityEnabled
                 && event.getPlayer().hasPermission("lumberjack.force.ignore")) {
-            System.out.println(8);
             return;
 
         }
         if (!plugin.getPlayerSetting(event.getPlayer()).gravityEnabled
                 && !event.getPlayer().hasPermission("lumberjack.force")) {
-            System.out.println(9);
             return;
         }
 

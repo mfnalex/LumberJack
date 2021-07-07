@@ -4,16 +4,52 @@
 # To enable this feature, just rename this file to "custom-drops.yml"
 
 # Example:
-
-oak_leaves:
-  - 1%golden_apple # 1% chance for a golden apple to drop from oak leaves
-  - 0.1%enchanted_golden_apple
-birch_leaves:
-  - 1%golden_apple
-  - 0.1%enchanted_golden_apple
+leaves:
+  acacia:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  birch:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  dark:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  jungle:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  oak:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  spruce:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  azalea:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  flowering_azalea:
+    - 1%golden_apple
+    - 0.1%enchanted_golden_apple
+  crimson:
+    - 0.1%music_disc_pigstep
+  warped:
+    - 0.1%music_disc_pigstep
 
 stripping:
-  oak_log:
-    - 100%stick # Always drop a stick when stripping oak log
-  birch_log:
+  acacia:
     - 100%stick
+  birch:
+    - 100%stick
+  dark_oak:
+    - 100%stick
+  jungle:
+    - 100%stick
+  oak:
+    - 100%stick
+  spruce:
+    - 100%stick
+  crimson:
+    - 20%crimson_fungus
+    - 20%crimson_roots
+  warped:
+    - 20%warped_fungus
+    - 20%warped_roots
