@@ -23,6 +23,16 @@ gravity-enabled-by-default: false
 # player used an axe to break the log.
 must-use-axe: true
 
+# When "must-use-axe" is enabled, players have to use at least this
+# kind of axe for tree gravity. E.g. when set to DIAMOND, tree
+# gravity only works for diamond and netherite axes. When set to
+# WOOD, it works with all axes.
+requires-at-least: WOOD
+
+# When enabled, tree gravity will only work when the
+# player is sneaking
+must-sneak: false
+
 # When enabled, leaves will decay within the given duration
 fast-leaves-decay: false
 
@@ -160,4 +170,4 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #########################
 
 # please do not change the following line manually!
-config-version: 11
+config-version: 13

@@ -13,7 +13,7 @@ import java.util.HashSet;
 public class DecayUtils {
 
     private static final int MAX_DISTANCE = 6;
-    private static final int RADIUS = 3;
+    private static final int RADIUS = 5;
     private static final boolean IS_AT_LEAST_v1_17;
     private static Boolean tagsAvailable = null;
 

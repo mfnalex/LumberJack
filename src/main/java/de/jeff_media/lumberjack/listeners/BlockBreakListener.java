@@ -4,6 +4,7 @@ import de.jeff_media.jefflib.BlockTracker;
 import de.jeff_media.lumberjack.LumberJack;
 import de.jeff_media.lumberjack.NBTKeys;
 import de.jeff_media.lumberjack.NBTValues;
+import de.jeff_media.lumberjack.data.AxeMaterial;
 import de.jeff_media.lumberjack.utils.TreeUtils;
 import de.jeff_media.nbtapi.NBTAPI;
 import org.bukkit.Material;
@@ -75,6 +76,17 @@ public class BlockBreakListener implements Listener {
         // check if axe has to be used
         if (plugin.getConfig().getBoolean("must-use-axe")) {
             if (!event.getPlayer().getInventory().getItemInMainHand().getType().name().toUpperCase().endsWith("_AXE")) {
+                return;
+            }
+            AxeMaterial requiredAxe = AxeMaterial.get(plugin.getConfig().getString("requires-at-least"));
+            if(!AxeMaterial.isAtLeast(event.getPlayer().getInventory().getItemInMainHand().getType(),requiredAxe)) {
+                return;
+            }
+        }
+
+        // check if player must sneak
+        if(plugin.getConfig().getBoolean("must-sneak")) {
+            if(!event.getPlayer().isSneaking()) {
                 return;
             }
         }
