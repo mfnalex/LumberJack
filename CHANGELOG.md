@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.0
+- Added configurable custom drops for all kinds of naturally generated leaves and stripping naturally generated logs
+  - See custom-drops.example.yml file
+- Added support for stripped wood and the "6 sided tree block"
+
 ## 3.1.0
 - Added option "requires-at-least". Only has an effect when "require-axe" is set to true
   - When set to IRON, gravity will only work with iron, diamond and netherite axes

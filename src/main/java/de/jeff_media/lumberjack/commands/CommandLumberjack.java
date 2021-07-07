@@ -29,7 +29,7 @@ public class CommandLumberjack implements CommandExecutor {
         }
 
         if (args.length > 0 && args[0].equalsIgnoreCase("reload") && sender.hasPermission("lumberjack.reload")) {
-            plugin.reloadConfig();
+            plugin.reload();
             sender.sendMessage(ChatColor.GREEN + "LumberJack has been reloaded.");
             return true;
         }

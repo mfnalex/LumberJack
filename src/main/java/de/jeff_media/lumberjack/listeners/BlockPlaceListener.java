@@ -31,6 +31,7 @@ public class BlockPlaceListener implements Listener {
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             if(placedBlock.getType().name().startsWith("STRIPPED_")) {
                 BlockTracker.setPlayerPlacedBlock(placedBlock, false);
+                plugin.getCustomDropManager().doCustomDrops(placedBlock.getLocation(), placedBlock.getType());
             }
         },1L);
     }

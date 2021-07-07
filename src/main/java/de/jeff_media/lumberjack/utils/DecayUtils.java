@@ -39,6 +39,7 @@ public class DecayUtils {
             for (int y = blockY - RADIUS; y <= blockY + RADIUS; y++) {
                 for (int z = blockZ - RADIUS; z <= blockZ + RADIUS; z++) {
                     Block candidate = world.getBlockAt(x, y, z);
+                    if(candidate == originalLeaf.getBlock()) continue;
                     if(candidate==null) continue;
                     if (candidate.getType().isAir()) continue;
                     if (!isLeaf(candidate)) {

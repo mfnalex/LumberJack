@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Leaves;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +29,14 @@ public class BlockBreakListener implements Listener {
 
     public BlockBreakListener(LumberJack plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
+    public void onLeavesBreak(BlockBreakEvent event) {
+        if(event.getBlock().getState() instanceof Leaves) {
+            if(((Leaves)event.getBlock().getState()).isPersistent()) return;
+            plugin.getCustomDropManager().doCustomDrops(event.getBlock().getLocation(),event.getBlock().getType());
+        }
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)

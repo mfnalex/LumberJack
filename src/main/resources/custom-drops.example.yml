@@ -1,0 +1,19 @@
+# You can define additional drops with certain percentages for all kinds of leaves.
+# You can also define additional drops for stripping logs.
+
+# To enable this feature, just rename this file to "custom-drops.yml"
+
+# Example:
+
+oak_leaves:
+  - 1%golden_apple # 1% chance for a golden apple to drop from oak leaves
+  - 0.1%enchanted_golden_apple
+birch_leaves:
+  - 1%golden_apple
+  - 0.1%enchanted_golden_apple
+
+stripping:
+  oak_log:
+    - 100%stick # Always drop a stick when stripping oak log
+  birch_log:
+    - 100%stick

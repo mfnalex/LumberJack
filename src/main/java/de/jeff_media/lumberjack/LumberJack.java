@@ -23,7 +23,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.scheduler.BukkitWorker;
 import org.bukkit.util.Vector;
 
 import java.io.File;
@@ -58,6 +57,11 @@ public class LumberJack extends JavaPlugin {
     HashMap<Player, PlayerSetting> perPlayerSettings;
     boolean debug = false;
     private boolean usingMatchingConfig = true;
+    private CustomDropManager customDropManager;
+
+    public CustomDropManager getCustomDropManager() {
+        return customDropManager;
+    }
 
     public HashSet<BukkitTask> getScheduledTasks() {
         return scheduledTasks;
@@ -82,6 +86,8 @@ public class LumberJack extends JavaPlugin {
         instance = this;
         JeffLib.init(this);
         NBTAPI.init(this);
+
+        customDropManager = new CustomDropManager();
 
         createConfig();
         //treeBlockNames = (ArrayList<String>) getConfig().getStringList("tree-blocks");
@@ -136,7 +142,7 @@ public class LumberJack extends JavaPlugin {
             Material mat = Enums.getIfPresent(Material.class, name).orNull();
             if (mat != null) {
                 trackedBlocks.add(mat);
-                System.out.println("Tracking material " + mat.name());
+                //System.out.println("Tracking material " + mat.name());
             }
         }
         BlockTracker.addTrackedBlockTypes(trackedBlocks);
@@ -243,6 +249,11 @@ public class LumberJack extends JavaPlugin {
             }
             perPlayerSettings.remove(p);
         }
+    }
+
+    public void reload() {
+        reloadConfig();
+        customDropManager = new CustomDropManager();
     }
 }
 	
