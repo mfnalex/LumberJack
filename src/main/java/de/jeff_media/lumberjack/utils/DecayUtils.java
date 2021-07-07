@@ -13,7 +13,7 @@ import java.util.HashSet;
 public class DecayUtils {
 
     private static final int MAX_DISTANCE = 6;
-    private static final int RADIUS = 15;
+    private static final int RADIUS = 3;
     private static final boolean IS_AT_LEAST_v1_17;
     private static Boolean tagsAvailable = null;
 
@@ -39,6 +39,7 @@ public class DecayUtils {
             for (int y = blockY - RADIUS; y <= blockY + RADIUS; y++) {
                 for (int z = blockZ - RADIUS; z <= blockZ + RADIUS; z++) {
                     Block candidate = world.getBlockAt(x, y, z);
+                    if(candidate==null) continue;
                     if (candidate.getType().isAir()) continue;
                     if (!isLeaf(candidate)) {
                         continue;

@@ -16,15 +16,18 @@ public class DecayTask extends BukkitRunnable {
     private static final LumberJack plugin = LumberJack.getInstance();
     private static final Random rand = new Random();
     private final BlockState leaf;
+    private final Collection<Block> leaves;
 
     public DecayTask(BlockState leaf) {
         this.leaf = leaf;
+        this.leaves = DecayUtils.getLeaves(leaf);
     }
 
     @Override
     public void run() {
-        Collection<Block> leaves = DecayUtils.getLeaves(leaf);
+        if(isCancelled()) return;
         for (Block leaf : leaves) {
+            if(isCancelled()) return;
             Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 if (DecayUtils.isLeaf(leaf)) {
                     Bukkit.getScheduler().runTask(plugin, (Runnable) leaf::breakNaturally);

@@ -22,6 +22,8 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scheduler.BukkitWorker;
 import org.bukkit.util.Vector;
 
 import java.io.File;
@@ -56,6 +58,12 @@ public class LumberJack extends JavaPlugin {
     HashMap<Player, PlayerSetting> perPlayerSettings;
     boolean debug = false;
     private boolean usingMatchingConfig = true;
+
+    public HashSet<BukkitTask> getScheduledTasks() {
+        return scheduledTasks;
+    }
+
+    private final HashSet<BukkitTask> scheduledTasks = new HashSet<>();
     //ArrayList<String> treeGroundBlockNames;
 
     public static LumberJack getInstance() {
@@ -184,6 +192,11 @@ public class LumberJack extends JavaPlugin {
     public void onDisable() {
         for (Player p : getServer().getOnlinePlayers()) {
             unregisterPlayer(p);
+        }
+        for(BukkitTask task : Bukkit.getScheduler().getPendingTasks()) {
+            if(task.getOwner() == this) {
+                task.cancel();
+            }
         }
     }
 
