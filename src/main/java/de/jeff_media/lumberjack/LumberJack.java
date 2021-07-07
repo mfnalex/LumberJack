@@ -35,14 +35,14 @@ public class LumberJack extends JavaPlugin {
 
     //static final String[] woodTypes = {"acacia", "birch", "jungle", "oak", "dark_oak", "spruce"};
     static final String[] treeBlocks = {
-            "ACACIA_LOG", "STRIPPED_ACACIA_LOG",
-            "BIRCH_LOG", "STRIPPED_BIRCH_LOG",
-            "DARK_OAK_LOG", "STRIPPED_DARK_OAK_LOG",
-            "JUNGLE_LOG", "STRIPPED_JUNGLE_LOG",
-            "OAK_LOG", "STRIPPED_OAK_LOG",
-            "SPRUCE_LOG", "STRIPPED_SPRUCE_LOG",
-            "WARPED_STEM", "STRIPPED_WARPED_STEM",
-            "CRIMSON_STEM", "STRIPPED_CRIMSON_STEM"
+            "ACACIA_LOG", "STRIPPED_ACACIA_LOG", "ACACIA_WOOD", "STRIPPED_ACACIA_WOOD",
+            "BIRCH_LOG", "STRIPPED_BIRCH_LOG", "BIRCH_WOOD", "STRIPPED_BIRCH_WOOD",
+            "DARK_OAK_LOG", "STRIPPED_DARK_OAK_LOG", "DARK_OAK_WOOD", "STRIPPED_DARK_OAK_WOOD",
+            "JUNGLE_LOG", "STRIPPED_JUNGLE_LOG", "JUNGLE_WOOD", "STRIPPED_JUNGLE_WOOD",
+            "OAK_LOG", "STRIPPED_OAK_LOG", "OAK_WOOD", "STRIPPED_OAK_WOOD",
+            "SPRUCE_LOG", "STRIPPED_SPRUCE_LOG", "SPRUCE_WOOD", "STRIPPED_SPRUCE_WOOD",
+            "WARPED_STEM", "STRIPPED_WARPED_STEM", "WARPED_HYPHAE", "STRIPPED_WARPED_HYPHAE",
+            "CRIMSON_STEM", "STRIPPED_CRIMSON_STEM", "CRIMSON_HYPHAE", "STRIPPED_CRIMSON_HYPHAE"
     };
     private static final int SPIGOT_RESOURCE_ID = 60306;
     private static LumberJack instance;
@@ -81,7 +81,6 @@ public class LumberJack extends JavaPlugin {
 
         instance = this;
         JeffLib.init(this);
-        JeffLib.setDebug(true);
         NBTAPI.init(this);
 
         createConfig();

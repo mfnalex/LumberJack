@@ -1,5 +1,6 @@
 package de.jeff_media.lumberjack.utils;
 
+import com.google.common.base.Enums;
 import de.jeff_media.lumberjack.LumberJack;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -15,42 +16,34 @@ public class TreeUtils {
         this.main = main;
     }
 
-
     static Material[] getValidGroundTypes(Material mat) {
-        switch (mat) {
-            case ACACIA_LOG:
-            case BIRCH_LOG:
-            case DARK_OAK_LOG:
-            case JUNGLE_LOG:
-            case OAK_LOG:
-            case SPRUCE_LOG:
-            case STRIPPED_ACACIA_LOG:
-            case STRIPPED_BIRCH_LOG:
-            case STRIPPED_DARK_OAK_LOG:
-            case STRIPPED_JUNGLE_LOG:
-            case STRIPPED_OAK_LOG:
-            case STRIPPED_SPRUCE_LOG:
+        switch (mat.name().replace("STRIPPED_","").replace("_WOOD","_LOG").replace("_STEM","_HYPHAE")) {
+            case "ACACIA_LOG":
+            case "BIRCH_LOG":
+            case "DARK_OAK_LOG":
+            case "JUNGLE_LOG":
+            case "OAK_LOG":
+            case "SPRUCE_LOG":
                 return new Material[]{
                         Material.DIRT,
                         Material.GRASS_BLOCK,
                         Material.MYCELIUM,
                         Material.COARSE_DIRT,
-                        Material.PODZOL};
-        }
-        switch (mat.name()) {
+                        Material.PODZOL,
+                        Enums.getIfPresent(Material.class, "ROOTED_DIRT").or(Material.DIRT),
+                        Enums.getIfPresent(Material.class, "MOSS_BLOCK").or(Material.DIRT)}; // TODO: Fuck the duplicates
             case "CRIMSON_STEM":
-            case "STRIPPED_CRIMSON_STEM":
                 return new Material[]{
                         Material.CRIMSON_NYLIUM,
                         Material.NETHERRACK
                 };
             case "WARPED_STEM":
-            case "WARPED_CRIMSON_STEM":
                 return new Material[]{
                         Material.WARPED_NYLIUM,
                         Material.NETHERRACK
                 };
         }
+
         return null;
     }
 
@@ -92,6 +85,13 @@ public class TreeUtils {
         return false;
     }
 
+    public static boolean matchesTrunkType(Material mat, Material mat2) {
+        if(mat==mat2) return true;
+        String n1 = mat.name().replace("STRIPPED_","").replace("_WOOD","_LOG");
+        String n2 = mat2.name().replace("STRIPPED_","").replace("_WOOD","_LOG");
+        return n1.equals(n2);
+    }
+
     public static boolean isAboveNonSolidBlock(Block block) {
 
         for (int height = block.getY() - 1; height >= 0; height--) {
@@ -108,8 +108,8 @@ public class TreeUtils {
     }
 
     static String getFlavor(Material mat) {
-        String name = mat.name().toLowerCase();
-
+        String name = mat.name().toLowerCase().replace("_WOOD","_LOG").replace("_STEM","_LOG").replace("_HYPHAE","_LOG");
+        if(!name.contains("_LOG")) return "none";
         if (name.contains("acacia")) {
             return "acacia";
         } else if (name.contains("birch")) {
@@ -136,7 +136,7 @@ public class TreeUtils {
         final BlockFace[] faces = {BlockFace.SOUTH, BlockFace.SOUTH_EAST, BlockFace.EAST, BlockFace.NORTH_EAST,
                 BlockFace.NORTH, BlockFace.NORTH_WEST, BlockFace.WEST, BlockFace.SOUTH_WEST};
 
-        if (above.getType() == mat) {
+        if (matchesTrunkType(above.getType(),mat)) {
             blocks.add(above);
         }
 
@@ -153,7 +153,7 @@ public class TreeUtils {
     }
 
     public static void getTreeTrunk2(Block block, ArrayList<Block> list, Material mat) {
-        if (!matchesTree(mat, block.getType())) return;
+        if (!matchesTrunkType(mat, block.getType())) return;
         if (!list.contains(block)) {
             list.add(block);
             //System.out.println("adding "+block.getType().name()+"@"+block.getLocation());
@@ -174,9 +174,9 @@ public class TreeUtils {
         int airInBetween = 0;
         Block currentBlock = block;
 
-        while (isPartOfTree(currentBlock) || currentBlock.getType() == Material.AIR) {
+        while (isPartOfTree(currentBlock) || currentBlock.getType().isAir()) {
 
-            if (currentBlock.getType() == Material.AIR) {
+            if (currentBlock.getType().isAir()) {
                 airInBetween++;
                 if (airInBetween > maxAirInBetween) {
                     return false;

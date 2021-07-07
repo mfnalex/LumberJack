@@ -1,7 +1,6 @@
 package de.jeff_media.lumberjack.commands;
 
 import de.jeff_media.jefflib.BlockTracker;
-import de.jeff_media.jefflib.thirdparty.org.jetbrains.annotations.NotNull;
 import de.jeff_media.lumberjack.LumberJack;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
@@ -9,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 

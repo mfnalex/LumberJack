@@ -1,11 +1,15 @@
 package de.jeff_media.lumberjack.listeners;
 
+import de.jeff_media.jefflib.BlockTracker;
 import de.jeff_media.lumberjack.LumberJack;
 import de.jeff_media.lumberjack.NBTKeys;
 import de.jeff_media.nbtapi.NBTAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
@@ -15,6 +19,20 @@ public class BlockPlaceListener implements Listener {
 
     public BlockPlaceListener(LumberJack plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onLogStrip(BlockPlaceEvent event) {
+        String typeName = event.getBlock().getType().name();
+        if(!(typeName.endsWith("_LOG") || typeName.endsWith("_WOOD") || typeName.endsWith("_STEM") || typeName.endsWith("_HYPHAE"))) return;
+        if(!BlockTracker.isTrackedBlockType(event.getBlock().getType())) return;
+        if(BlockTracker.isPlayerPlacedBlock(event.getBlock())) return;
+        final Block placedBlock = event.getBlock();
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            if(placedBlock.getType().name().startsWith("STRIPPED_")) {
+                BlockTracker.setPlayerPlacedBlock(placedBlock, false);
+            }
+        },1L);
     }
 
 
