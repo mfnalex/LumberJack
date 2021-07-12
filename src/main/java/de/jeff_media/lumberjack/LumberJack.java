@@ -48,7 +48,7 @@ public class LumberJack extends JavaPlugin {
     public final Vector fallingBlockOffset = new Vector(0.5, 0.0, 0.5);
     public final int maxTreeSize = 50;
     @SuppressWarnings("FieldCanBeLocal")
-    private final int currentConfigVersion = 13;
+    private final int currentConfigVersion = 14;
     public TreeUtils treeUtils;
     public Messages messages;
     public ArrayList<String> disabledWorlds;

@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.1
+- Added Russian translation
+
 ## 4.0.0
 - Added configurable custom drops for all kinds of naturally generated leaves and stripping naturally generated logs
   - See custom-drops.example.yml file
