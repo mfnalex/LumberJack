@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.2
+- Fixed exception when breaking certain blocks
+
 ## 4.0.1
 - Added Russian translation
 

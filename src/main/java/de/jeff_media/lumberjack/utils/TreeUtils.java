@@ -7,6 +7,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class TreeUtils {
 
@@ -186,7 +187,11 @@ public class TreeUtils {
             currentBlock = currentBlock.getRelative(BlockFace.DOWN);
         }
 
-        for (Material mat : getValidGroundTypes(block.getType())) {
+        Material[] validGroundTypes = getValidGroundTypes(block.getType());
+
+        if(validGroundTypes == null) return false;
+
+        for (Material mat : validGroundTypes) {
             if (mat == currentBlock.getType()) return true;
         }
         return false;
