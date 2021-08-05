@@ -5,7 +5,7 @@
 
     <groupId>de.jeff_media</groupId>
     <artifactId>LumberJack</artifactId>
-    <version>4.0.2</version>
+    <version>4.1.0</version>
     <packaging>jar</packaging>
 
     <name>LumberJack</name>
@@ -44,11 +44,6 @@
                         <relocation>
                             <pattern>de.jeff_media.jefflib</pattern>
                             <shadedPattern>de.jeff_media.lumberjack</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>org.apache.maven.artifact</pattern>
-                            <shadedPattern>de.jeff_media.angelchest.jefflib.thirdparty.org.apache.maven.artifact
-                            </shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>de.jeff_media.updatechecker</pattern>
@@ -113,7 +108,8 @@
         <dependency>
             <groupId>de.jeff_media</groupId>
             <artifactId>JeffLib</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>4.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -127,17 +123,12 @@
             <version>1.7</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>de.jeff_media</groupId>
-            <artifactId>SpigotUpdateChecker</artifactId>
-            <version>1.2.4</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>de.jeff_media</groupId>
             <artifactId>NBTAPI</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-        </dependency>
+            <scope>compile</scope>
+        </dependency>-->
     </dependencies>
 
     <distributionManagement>

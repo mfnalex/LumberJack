@@ -4,6 +4,8 @@ import com.google.common.base.Enums;
 import de.jeff_media.jefflib.BlockTracker;
 import de.jeff_media.jefflib.JeffLib;
 import de.jeff_media.jefflib.McVersion;
+import de.jeff_media.jefflib.updatechecker.UpdateChecker;
+import de.jeff_media.jefflib.updatechecker.UserAgentBuilder;
 import de.jeff_media.lumberjack.commands.CommandLumberjack;
 import de.jeff_media.lumberjack.config.ConfigUpdater;
 import de.jeff_media.lumberjack.config.Messages;
@@ -13,9 +15,6 @@ import de.jeff_media.lumberjack.listeners.BlockPlaceListener;
 import de.jeff_media.lumberjack.listeners.DecayListener;
 import de.jeff_media.lumberjack.listeners.PlayerListener;
 import de.jeff_media.lumberjack.utils.TreeUtils;
-import de.jeff_media.nbtapi.NBTAPI;
-import de.jeff_media.updatechecker.UpdateChecker;
-import de.jeff_media.updatechecker.UserAgentBuilder;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -85,7 +84,6 @@ public class LumberJack extends JavaPlugin {
 
         instance = this;
         JeffLib.init(this);
-        NBTAPI.init(this);
 
         customDropManager = new CustomDropManager();
 

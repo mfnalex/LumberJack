@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.1.0
+- Reduced file size
+
 ## 4.0.2
 - Fixed exception when breaking certain blocks
 
