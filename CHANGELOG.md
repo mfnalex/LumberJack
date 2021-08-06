@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.2.0
+- Limited max amount of tasks being scheduled for faster leaf decay
+- Fixed plugin showing wrong version
+  - (I finally switched to letting maven handle the version string so it won't happen again)
+
 ## 4.1.0
 - Reduced file size
 

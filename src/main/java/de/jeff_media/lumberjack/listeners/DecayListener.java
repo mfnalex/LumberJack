@@ -14,7 +14,9 @@ public class DecayListener implements Listener {
     public void onLeafDecay(LeavesDecayEvent event) {
         if (!plugin.getConfig().getBoolean("fast-leaves-decay")) return;
         plugin.getCustomDropManager().doCustomDrops(event.getBlock().getLocation(), event.getBlock().getType());
-        new DecayTask(event.getBlock().getState()).runTaskAsynchronously(plugin);
+        if(plugin.decayTasks.size()<plugin.getConfig().getInt("max-decay-tasks",1000)) {
+            plugin.decayTasks.add(new DecayTask(event.getBlock().getState()).runTaskAsynchronously(plugin).getTaskId());
+        }
     }
 
 

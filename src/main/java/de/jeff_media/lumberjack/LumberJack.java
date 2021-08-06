@@ -57,6 +57,7 @@ public class LumberJack extends JavaPlugin {
     boolean debug = false;
     private boolean usingMatchingConfig = true;
     private CustomDropManager customDropManager;
+    public final Set<Integer> decayTasks = new HashSet<>();
 
     public CustomDropManager getCustomDropManager() {
         return customDropManager;

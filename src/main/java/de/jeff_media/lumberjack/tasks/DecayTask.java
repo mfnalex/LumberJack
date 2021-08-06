@@ -25,17 +25,20 @@ public class DecayTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        if(isCancelled()) return;
-        for (Block leaf : leaves) {
-            if(isCancelled()) return;
-            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                if (DecayUtils.isLeaf(leaf)) {
-                    Bukkit.getScheduler().runTask(plugin, () -> {
-                        plugin.getCustomDropManager().doCustomDrops(leaf.getLocation(),leaf.getType());
-                        leaf.breakNaturally();
-                    });
-                }
-            }, rand.nextInt((int) Ticks.fromSeconds(plugin.getConfig().getDouble("fast-leaves-decay-duration"))));
+
+        if (!isCancelled()) {
+            for (Block leaf : leaves) {
+                if (isCancelled()) return;
+                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                    if (DecayUtils.isLeaf(leaf)) {
+                        Bukkit.getScheduler().runTask(plugin, () -> {
+                            plugin.getCustomDropManager().doCustomDrops(leaf.getLocation(), leaf.getType());
+                            leaf.breakNaturally();
+                        });
+                    }
+                }, rand.nextInt((int) Ticks.fromSeconds(plugin.getConfig().getDouble("fast-leaves-decay-duration"))));
+            }
         }
+        plugin.decayTasks.remove(getTaskId());
     }
 }

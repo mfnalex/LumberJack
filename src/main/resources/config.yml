@@ -39,6 +39,10 @@ fast-leaves-decay: false
 # The amount of seconds it takes at most to have leaves decay.
 fast-leaves-decay-duration: 10
 
+# Only adjust this when you experience lag using custom world
+# generators
+max-decay-tasks: 1000
+
 # When true, only naturally generated (world generation or via sapling) trees will have gravity
 # When false, logs placed by players will also have gravity
 only-natural-logs: true
