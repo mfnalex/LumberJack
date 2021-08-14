@@ -155,6 +155,13 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #message-when-breaking-log2: "&7Astuce: écris &6/lumberjack&7 pour désactiver la gravité d'arbre."
 #message-can-not-disable: "&cVous n'avez pas la permission de désactiver la gravité d'arbre."
 
+##### Hungarian
+# message-gravity-enabled: "&7A fa gravitációja &aengedélyezve&7 lett."
+# message-gravity-disabled: "&7A fa gravitációja le lett &ctiltva&7."
+# message-when-breaking-log: "&7Tipp: Írd be a &6/lumberjack&7 parancsot, hogy engedélyezd a fa gravitációját."
+# message-when-breaking-log2: "&7Tipp: Írd be a &6/lumberjack&7 parancsot, hogy letiltsd a fa gravitációját."
+# message-can-not-disable: "&cNeked nem engedélyezett, hogy letiltsd a fa gravitációját."
+
 ##### Russian
 #message-gravity-enabled: "&7Гравитация для деревьев &aвключена&7."
 #message-gravity-disabled: "&7Гравитация для деревьев &cотключена&7."
