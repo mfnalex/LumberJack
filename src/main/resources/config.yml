@@ -169,6 +169,13 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #message-when-breaking-log2: "&7Подсказка: Введите &6/lumberjack&7, чтобы отключить действие гравитации на деревья."
 #message-can-not-disable: "&cВы не можете отключить гравитацию для деревьев."
 
+##### Polish
+#message-gravity-enabled: "&7Grawitacja drzew została &awłączona&7."
+#message-gravity-disabled: "&7Grawitacja drzew została &cwyłączona&7."
+#message-when-breaking-log: "&7Podpowiedź: Wpisz &6/lumberjack&7 aby włączyć grawitację drzew."
+#message-when-breaking-log2: "&7Podpowiedź: Wpisz &6/lumberjack&7 aby wyłączyć grawitację drzew."
+#message-can-not-disable: "&cNie możesz wyłączyć grawitacji drzew."
+
 ##### Spanish
 #message-gravity-enabled: "&7La gravedad de arboles ha sido &ahabilitada&7."
 #message-gravity-disabled: "&7La gravedad de arboles ha sido &cdeshabilitada&7."
