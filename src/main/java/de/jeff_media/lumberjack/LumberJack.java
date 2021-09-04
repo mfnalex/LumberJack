@@ -86,6 +86,10 @@ public class LumberJack extends JavaPlugin {
         instance = this;
         JeffLib.init(this);
 
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new Placeholders().register();
+        }
+
         customDropManager = new CustomDropManager();
 
         createConfig();

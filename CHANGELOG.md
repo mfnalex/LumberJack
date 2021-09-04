@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.3.0
+- Added PlaceholderAPI support
+
 ## 4.2.0
 - Limited max amount of tasks being scheduled for faster leaf decay
 - Fixed plugin showing wrong version
