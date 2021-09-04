@@ -155,12 +155,26 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #message-when-breaking-log2: "&7Astuce: écris &6/lumberjack&7 pour désactiver la gravité d'arbre."
 #message-can-not-disable: "&cVous n'avez pas la permission de désactiver la gravité d'arbre."
 
+##### Hungarian
+# message-gravity-enabled: "&7A fa gravitációja &aengedélyezve&7 lett."
+# message-gravity-disabled: "&7A fa gravitációja le lett &ctiltva&7."
+# message-when-breaking-log: "&7Tipp: Írd be a &6/lumberjack&7 parancsot, hogy engedélyezd a fa gravitációját."
+# message-when-breaking-log2: "&7Tipp: Írd be a &6/lumberjack&7 parancsot, hogy letiltsd a fa gravitációját."
+# message-can-not-disable: "&cNeked nem engedélyezett, hogy letiltsd a fa gravitációját."
+
 ##### Russian
 #message-gravity-enabled: "&7Гравитация для деревьев &aвключена&7."
 #message-gravity-disabled: "&7Гравитация для деревьев &cотключена&7."
-#message-when-breaking-log: "&7Подсказка: Введите &6/lumberjack&7, чтобы включить действие гравитации на деревья."
-#message-when-breaking-log2: "&7Подсказка: Введите &6/lumberjack&7, чтобы отключить действие гравитации на деревья."
+#message-when-breaking-log: "&7Подсказка: Введите &6/lumberjack&7, чтобы включить гравитацию для деревьев."
+#message-when-breaking-log2: "&7Подсказка: Введите &6/lumberjack&7, чтобы отключить гравитацию для деревьев."
 #message-can-not-disable: "&cВы не можете отключить гравитацию для деревьев."
+
+##### Polish
+#message-gravity-enabled: "&7Grawitacja drzew została &awłączona&7."
+#message-gravity-disabled: "&7Grawitacja drzew została &cwyłączona&7."
+#message-when-breaking-log: "&7Podpowiedź: Wpisz &6/lumberjack&7 aby włączyć grawitację drzew."
+#message-when-breaking-log2: "&7Podpowiedź: Wpisz &6/lumberjack&7 aby wyłączyć grawitację drzew."
+#message-can-not-disable: "&cNie możesz wyłączyć grawitacji drzew."
 
 ##### Spanish
 #message-gravity-enabled: "&7La gravedad de arboles ha sido &ahabilitada&7."
