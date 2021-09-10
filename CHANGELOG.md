@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.4.0
+- Switched to JeffLib v5.0.0 (Reduces some unnecessary code duplications)
+
 ## 4.3.0
 - Added PlaceholderAPI support
 

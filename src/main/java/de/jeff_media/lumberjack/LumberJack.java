@@ -4,8 +4,7 @@ import com.google.common.base.Enums;
 import de.jeff_media.jefflib.BlockTracker;
 import de.jeff_media.jefflib.JeffLib;
 import de.jeff_media.jefflib.McVersion;
-import de.jeff_media.jefflib.updatechecker.UpdateChecker;
-import de.jeff_media.jefflib.updatechecker.UserAgentBuilder;
+import de.jeff_media.jefflib.pluginhooks.PlaceholderAPIUtils;
 import de.jeff_media.lumberjack.commands.CommandLumberjack;
 import de.jeff_media.lumberjack.config.ConfigUpdater;
 import de.jeff_media.lumberjack.config.Messages;
@@ -15,9 +14,12 @@ import de.jeff_media.lumberjack.listeners.BlockPlaceListener;
 import de.jeff_media.lumberjack.listeners.DecayListener;
 import de.jeff_media.lumberjack.listeners.PlayerListener;
 import de.jeff_media.lumberjack.utils.TreeUtils;
+import de.jeff_media.updatechecker.UpdateChecker;
+import de.jeff_media.updatechecker.UserAgentBuilder;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,6 +29,7 @@ import org.bukkit.util.Vector;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.BiFunction;
 
 
 public class LumberJack extends JavaPlugin {
@@ -86,9 +89,10 @@ public class LumberJack extends JavaPlugin {
         instance = this;
         JeffLib.init(this);
 
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            new Placeholders().register();
-        }
+        PlaceholderAPIUtils.registerPlaceholder("enabled", (player, s) -> {
+            if(!player.isOnline()) return "false";
+            return String.valueOf(getPlayerSetting(player.getPlayer()).gravityEnabled);
+        });
 
         customDropManager = new CustomDropManager();
 
