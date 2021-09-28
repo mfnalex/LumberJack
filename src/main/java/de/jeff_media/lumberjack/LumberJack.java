@@ -80,8 +80,8 @@ public class LumberJack extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        if (McVersion.getMinor() < 14) {
-            getLogger().severe("LumberJack requires AT LEAST Minecraft version 1.14.1!");
+        if (!McVersion.isAtLeast(1,16,3)) {
+            getLogger().severe("LumberJack requires AT LEAST Minecraft version 1.16.3!");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
@@ -89,6 +89,7 @@ public class LumberJack extends JavaPlugin {
         instance = this;
         JeffLib.init(this);
 
+        // %lumberjack_enabled%
         PlaceholderAPIUtils.register("enabled", (player) -> {
             if(!player.isOnline()) return "false";
             return String.valueOf(getPlayerSetting(player.getPlayer()).gravityEnabled);
