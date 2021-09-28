@@ -23,10 +23,12 @@ public class BlockPlaceListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onLogStrip(BlockPlaceEvent event) {
+        if(event.getBlockReplacedState().getType().isAir()) return;
         String typeName = event.getBlock().getType().name();
         if(!(typeName.endsWith("_LOG") || typeName.endsWith("_WOOD") || typeName.endsWith("_STEM") || typeName.endsWith("_HYPHAE"))) return;
         if(!BlockTracker.isTrackedBlockType(event.getBlock().getType())) return;
         if(BlockTracker.isPlayerPlacedBlock(event.getBlock())) return;
+
         final Block placedBlock = event.getBlock();
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             if(placedBlock.getType().name().startsWith("STRIPPED_")) {

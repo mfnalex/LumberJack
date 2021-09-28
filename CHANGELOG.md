@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.4.2
+- Fixed player placed stripped logs being subject to tree gravity
+
 ## 4.4.0
 - Switched to JeffLib v5.0.0 (Reduces some unnecessary code duplications)
 
