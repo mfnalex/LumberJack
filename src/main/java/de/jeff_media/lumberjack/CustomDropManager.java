@@ -46,7 +46,7 @@ public class CustomDropManager {
                             continue;
                         }
                         if(plugin.getConfig().getBoolean("debug")) {
-                            System.out.println("Adding drop for " + baseMat + ": " + chance + "% = " + dropType);
+                            //System.out.println("Adding drop for " + baseMat + ": " + chance + "% = " + dropType);
                         }
                         list.add(new CustomDrop(chance, dropType));
                     } catch (Throwable t) {
@@ -76,7 +76,7 @@ public class CustomDropManager {
                                 continue;
                             }
                             if(plugin.getConfig().getBoolean("debug")) {
-                                System.out.println("Adding drop for " + baseMat + ": " + chance + "% = " + dropType);
+                                //System.out.println("Adding drop for " + baseMat + ": " + chance + "% = " + dropType);
                             }
                             list.add(new CustomDrop(chance, dropType));
                         } catch (Throwable t) {

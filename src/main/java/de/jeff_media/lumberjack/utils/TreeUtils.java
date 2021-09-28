@@ -18,7 +18,11 @@ public class TreeUtils {
     }
 
     static Material[] getValidGroundTypes(Material mat) {
-        switch (mat.name().replace("STRIPPED_","").replace("_WOOD","_LOG").replace("_STEM","_HYPHAE")) {
+
+        //System.out.println(mat.name());
+        //System.out.println(mat.name().replace("STRIPPED_","").replace("_WOOD","_LOG").replace("_STEM","_HYPHAE"));
+
+        switch (mat.name().replace("STRIPPED_","").replace("_WOOD","_LOG").replace("_HYPHAE","_STEM")) {
             case "ACACIA_LOG":
             case "BIRCH_LOG":
             case "DARK_OAK_LOG":
@@ -192,7 +196,11 @@ public class TreeUtils {
         if(validGroundTypes == null) return false;
 
         for (Material mat : validGroundTypes) {
-            if (mat == currentBlock.getType()) return true;
+            //System.out.println("Checking whether " + mat + " == " + currentBlock.getType());
+            if (mat == currentBlock.getType()) {
+                //System.out.println("YES");
+                return true;
+            }
         }
         return false;
     }

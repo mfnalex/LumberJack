@@ -89,7 +89,7 @@ public class LumberJack extends JavaPlugin {
         instance = this;
         JeffLib.init(this);
 
-        PlaceholderAPIUtils.registerPlaceholder("enabled", (player, s) -> {
+        PlaceholderAPIUtils.register("enabled", (player) -> {
             if(!player.isOnline()) return "false";
             return String.valueOf(getPlayerSetting(player.getPlayer()).gravityEnabled);
         });
