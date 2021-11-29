@@ -88,6 +88,7 @@ public class LumberJack extends JavaPlugin {
 
         instance = this;
         JeffLib.init(this);
+        JeffLib.registerBlockTracker();
 
         // %lumberjack_enabled%
         PlaceholderAPIUtils.register("enabled", (player) -> {

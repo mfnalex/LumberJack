@@ -1,5 +1,8 @@
 # Changelog
 
+## 5.0.0
+- Added 1.18 support
+
 ## 4.4.2
 - Fixed player placed stripped logs being subject to tree gravity
 
