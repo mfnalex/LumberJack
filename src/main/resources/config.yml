@@ -183,6 +183,13 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #message-when-breaking-log2: "&7Lumberjack: Utiliza &6/lumberjack&7 para deshabilitar la gravedad de arboles."
 #message-can-not-disable: "&cNo tienes permitido deshabilitar la gravedad de arboles."
 
+##### Swedish
+#message-gravity-enabled: "&7Trädgravitation har &aaktiverats&7."
+#message-gravity-disabled: "&7Trädgravitationen har &cinaktiverats&7."
+#message-when-breaking-log: "&7Tips: Skriv &6/lumberjack&7 för att aktivera trädgravitation."
+#message-when-breaking-log2: "&7Tips: Skriv &6/lumberjack&7 för att inaktivera trädgravitationen."
+#message-can-not-disable: "&cDu får inte inaktivera trädgravitationen."
+
 ##### Turkish
 #message-gravity-enabled: "&7Ağaç yerçekimi &aaktifleştirildi&7."
 #message-gravity-disabled: "&7Ağaç yerçekimi &cdeaktifleştirildi&7."
