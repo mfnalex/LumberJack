@@ -86,6 +86,10 @@ show-message-when-breaking-log-and-gravity-is-enabled: false
 # logs out and back in and then breaks a log again.
 show-message-again-after-logout: true
 
+# when set to true, player settings will be stored inside the Player's PDC.
+# when set to false, player settings will be stored in per-player yaml files.
+use-pdc: true
+
 ##########################
 ##### Update Checker #####
 ##########################

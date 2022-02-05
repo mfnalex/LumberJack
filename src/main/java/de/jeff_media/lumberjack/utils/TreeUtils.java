@@ -35,6 +35,7 @@ public class TreeUtils {
                         Material.MYCELIUM,
                         Material.COARSE_DIRT,
                         Material.PODZOL,
+                        Material.SNOW_BLOCK,
                         Enums.getIfPresent(Material.class, "ROOTED_DIRT").or(Material.DIRT),
                         Enums.getIfPresent(Material.class, "MOSS_BLOCK").or(Material.DIRT)}; // TODO: Fuck the duplicates
             case "CRIMSON_STEM":

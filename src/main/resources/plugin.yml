@@ -7,6 +7,8 @@ author: mfnalex
 prefix: LumberJack
 database: false
 website: https://www.mfnalex.de/
+softdepend:
+  - FarmLimiter
 commands:
   lumberjack:
     description: Toggle gravity for tree trunks

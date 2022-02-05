@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.1.0
+- Added support for FarmLimiter (although tbh that plugin is a bit... "special"... it offers an API but only for people who actually bought the plugin, and because I haven't bought it, LumberJack has to access its API via reflection - but don't worry, this doesn't lead to any problems for you :) )
+- Switched from per-player YAML files to PDC - can be disabled in the config, but it doesn't make any sense to disable it.
+- Added SNOW_BLOCK to valid ground types for overworld trees. This should make it work for custom trees created by some world generators in snowy biomes
+- Removed unused classes, reducing file size by 150 kb
+
 ## 5.0.0
 - Added 1.18 support
 

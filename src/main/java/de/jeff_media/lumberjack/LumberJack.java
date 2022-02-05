@@ -1,6 +1,7 @@
 package de.jeff_media.lumberjack;
 
 import com.google.common.base.Enums;
+import com.jeff_media.morepersistentdatatypes.DataType;
 import de.jeff_media.jefflib.BlockTracker;
 import de.jeff_media.jefflib.JeffLib;
 import de.jeff_media.jefflib.McVersion;
@@ -9,6 +10,7 @@ import de.jeff_media.lumberjack.commands.CommandLumberjack;
 import de.jeff_media.lumberjack.config.ConfigUpdater;
 import de.jeff_media.lumberjack.config.Messages;
 import de.jeff_media.lumberjack.data.PlayerSetting;
+import de.jeff_media.lumberjack.hooks.FarmLimiterListener;
 import de.jeff_media.lumberjack.listeners.BlockBreakListener;
 import de.jeff_media.lumberjack.listeners.BlockPlaceListener;
 import de.jeff_media.lumberjack.listeners.DecayListener;
@@ -19,9 +21,14 @@ import de.jeff_media.updatechecker.UserAgentBuilder;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.EventPriority;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
@@ -142,6 +149,21 @@ public class LumberJack extends JavaPlugin {
         }
 
         trackBlocks();
+
+        registerFarmLimiterEventListener();
+    }
+
+    private void registerFarmLimiterEventListener() {
+
+        Plugin plugin = Bukkit.getPluginManager().getPlugin("FarmLimiter");
+        if(plugin == null) return;
+        try {
+            getLogger().warning("Oh, you are running FarmLimiter. Hooking into it now...");
+            Bukkit.getPluginManager().registerEvent((Class<? extends Event>) Class.forName("me.filoghost.farmlimiter.api.FarmLimitEvent"),new FarmLimiterListener(), EventPriority.HIGHEST,new FarmLimiterListener.FarmLimiterListenerEventExecutor(),this,false);
+            getLogger().warning("Hooked into FarmLimiter. However, PLEASE mock the FarmLimiter author to make their API publicly available in some maven repo. LumberJack currently has to rely on reflection to access its API.");
+        } catch (ClassNotFoundException ignored) {
+            ignored.printStackTrace();
+        }
     }
 
     private void trackBlocks() {
@@ -182,6 +204,7 @@ public class LumberJack extends JavaPlugin {
         }
 
         getConfig().addDefault("gravity-enabled-by-default", false);
+        getConfig().addDefault("use-pdc",true);
         getConfig().addDefault("check-for-updates", "true");
         getConfig().addDefault("show-message-again-after-logout", true);
         getConfig().addDefault("attached-logs-fall-down", true);
@@ -225,11 +248,22 @@ public class LumberJack extends JavaPlugin {
 
             File playerFile = new File(getDataFolder() + File.separator + "playerdata",
                     p.getUniqueId() + ".yml");
-            YamlConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerFile);
+            FileConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerFile);
+
+            if(getConfig().getBoolean("use-pdc")) {
+                //System.out.println("PDC enabled");
+                if(playerFile.exists()) {
+                    playerFile.delete();
+                }
+                if(p.getPersistentDataContainer().has(new NamespacedKey(this,NBTKeys.SETTINGS),DataType.FILE_CONFIGURATION)) {
+                    //System.out.println("Loaded PDC");
+                    playerConfig = p.getPersistentDataContainer().get(new NamespacedKey(this, NBTKeys.SETTINGS),DataType.FILE_CONFIGURATION);
+                }
+            }
 
             boolean activeForThisPlayer;
 
-            if (!playerFile.exists()) {
+            if (!playerConfig.isSet("gravityEnabled")) {
                 activeForThisPlayer = gravityEnabledByDefault;
             } else {
                 activeForThisPlayer = playerConfig.getBoolean("gravityEnabled");
@@ -251,11 +285,17 @@ public class LumberJack extends JavaPlugin {
             YamlConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerFile);
             playerConfig.set("gravityEnabled", setting.gravityEnabled);
             playerConfig.set("hasSeenMessage", setting.hasSeenMessage);
-            try {
-                playerConfig.save(playerFile);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if(getConfig().getBoolean("use-pdc")) {
+                p.getPersistentDataContainer().set(new NamespacedKey(this,NBTKeys.SETTINGS), DataType.FILE_CONFIGURATION,playerConfig);
+            } else {
+                try {
+                    playerConfig.save(playerFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
             perPlayerSettings.remove(p);
         }
     }
