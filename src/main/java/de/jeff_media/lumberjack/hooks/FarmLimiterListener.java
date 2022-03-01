@@ -29,17 +29,14 @@ public class FarmLimiterListener implements Listener {
 
         @Override
         public void execute(@NotNull Listener listener, @NotNull Event event) throws EventException {
-            System.out.println("Event");
             if(eventClass== null) return;
             if(!eventClass.isInstance(event)) return;
-            System.out.println("Farmlimiter event");
             try {
                 Collection<Entity> toRemove = (Collection<Entity>) event.getClass().getDeclaredMethod("getEntitiesToRemove").invoke(event);
                 toRemove.removeIf(new Predicate<Entity>() {
                     @Override
                     public boolean test(Entity entity) {
                         if(entity instanceof FallingBlock) {
-                            System.out.println("Removed entity from FarmLimiter event: " + entity);
                             return true;
                         }
                         return false;
