@@ -201,6 +201,13 @@ message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 #message-when-breaking-log2: "&7İpucu: Ağaç yerçekimini deaktifleştirmek için &6/lumberjack&7 yazınız."
 #message-can-not-disable: "&cAğaç yerçekimini deaktifleştirmek için yetkiniz yok."
 
+##### Romanian
+#message-gravity-enabled: "&7Graviația copacilor a fost &aactivată&7."
+#message-gravity-disabled: "&7Graviația copacilor a fost &cdezactivată&7."
+#message-when-breaking-log: "&7Sfat: Scrie &6/lumberjack&7 pentru a activa gravitația copacilor."
+#message-when-breaking-log2: "&7Sfat: Scrie &6/lumberjack&7 pentru a dezactiva gravitația copacilor."
+#message-can-not-disable: "&cNu ai permisiunea să dezactivezi gravitația copacilor."
+
 #########################
 #####     Done!     #####
 #########################
