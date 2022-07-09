@@ -145,6 +145,13 @@ message-when-breaking-log: "&7Hint: Type &6/lumberjack&7 to enable tree gravity.
 message-when-breaking-log2: "&7Hint: Type &6/lumberjack&7 to disable tree gravity."
 message-can-not-disable: "&cYou are not allowed to disable tree gravity."
 
+##### Bulgarian
+#message-gravity-enabled: "&7Дървестната гравитация беше &aактивирана&7."
+#message-gravity-disabled: "&7Дървестната гравитация беше &cдеактивирана&7."
+#message-when-breaking-log: "&7Подсказка: Напишете &6/lumberjack&7, за да активирате дървестната гравитация."
+#message-when-breaking-log2: "&7Подсказка: Напишете &6/lumberjack&7, за да деактивирате дървестната гравитация."
+#message-can-not-disable: "&cНе Ви е позволено да изключвате дървестната гравитация."
+
 ##### Dutch
 #message-gravity-enabled: "&7Boom zwaartekracht is &aingeschakeld&7."
 #message-gravity-disabled: "&7Boom zwaartekracht is &cuitgeschakeld&7."
