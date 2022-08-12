@@ -87,14 +87,13 @@ public class LumberJack extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        if (!McVersion.isAtLeast(1,16,3)) {
+        if (!McVersion.current().isAtLeast(1,16,3)) {
             getLogger().severe("LumberJack requires AT LEAST Minecraft version 1.16.3!");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
 
         instance = this;
-        JeffLib.init(this);
         JeffLib.registerBlockTracker();
 
         // %lumberjack_enabled%

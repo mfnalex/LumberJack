@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.2.0
+- Added 1.19 support
+  - Note: gravity for mangrove trees is not working properly yet. Full support for mangroves will be added in the next update. 
+
 ## 5.1.2
 - Added 1.18.2 support
 

@@ -5,6 +5,7 @@ import de.jeff_media.lumberjack.LumberJack;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.map.MinecraftFont;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,6 +49,18 @@ public class TreeUtils {
                         Material.WARPED_NYLIUM,
                         Material.NETHERRACK
                 };
+            case "MANGROVE_LOG":
+                return new Material[] {
+                        Material.MANGROVE_ROOTS,
+                        Material.MUDDY_MANGROVE_ROOTS,
+                        Material.MUD,
+                        Material.AIR
+                };
+            case "MANGROVE_ROOTS":
+                return new Material[] {
+                        Material.MUDDY_MANGROVE_ROOTS,
+                        Material.MUD
+                };
         }
 
         return null;
@@ -87,6 +100,11 @@ public class TreeUtils {
             case "CRIMSON_STEM":
             case "STRIPPED_CRIMSON_STEM":
                 return orig.name().equals("CRIMSON_STEM") || orig.name().equals("STRIPPED_CRIMSON_STEM");
+            case "MANGROVE_LOG":
+            case "MANGROVE_LEAVES":
+            case "STRIPPED_MANGROVE_LOG":
+            case "MANGROVE_ROOTS":
+                return orig.name().equals("MANGROVE_LOG") || orig.name().equals("STRIPPED_MANGROVE_LOG") || orig.name().equals("MANGROVE_ROOTS");
         }
         return false;
     }
@@ -102,7 +120,7 @@ public class TreeUtils {
 
         for (int height = block.getY() - 1; height >= 0; height--) {
             Block candidate = block.getWorld().getBlockAt(block.getX(), height, block.getZ());
-            if (candidate.getType().isSolid()) {
+            if (candidate.getType().isSolid() || candidate.getType().name().equals("MANGROVE_ROOTS")) {
                 return true;
             }
             if (candidate.getType() != Material.AIR) {
@@ -128,6 +146,8 @@ public class TreeUtils {
             return "jungle";
         } else if (name.contains("spruce")) {
             return "spruce";
+        } else if (name.contains("mangrove")) {
+            return "mangrove";
         } else {
             return "none";
         }

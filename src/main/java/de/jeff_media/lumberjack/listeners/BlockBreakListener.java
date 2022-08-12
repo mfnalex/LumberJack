@@ -72,6 +72,11 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
+        if(!event.getPlayer().hasPermission("lumberjack.use")) {
+            //System.out.println("No permission");
+            return;
+        }
+
         //System.out.println(4);
 
         // Tree gravity does not work for player placed blocks
@@ -127,9 +132,11 @@ public class BlockBreakListener implements Listener {
 
         //System.out.println(8);
 
-        // fix for torch bug part 2
-        if (plugin.getConfig().getBoolean("prevent-torch-exploit") && !TreeUtils.isAboveNonSolidBlock(event.getBlock())) {
-            return;
+        if(!event.getBlock().getType().name().contains("MANGROVE")) {
+            // fix for torch bug part 2
+            if (plugin.getConfig().getBoolean("prevent-torch-exploit") && !TreeUtils.isAboveNonSolidBlock(event.getBlock())) {
+                return;
+            }
         }
 
         //System.out.println(9);
