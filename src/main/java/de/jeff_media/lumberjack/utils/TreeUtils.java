@@ -30,6 +30,7 @@ public class TreeUtils {
             case "JUNGLE_LOG":
             case "OAK_LOG":
             case "SPRUCE_LOG":
+            case "CHERRY_LOG":
                 return new Material[]{
                         Material.DIRT,
                         Material.GRASS_BLOCK,
@@ -105,6 +106,11 @@ public class TreeUtils {
             case "STRIPPED_MANGROVE_LOG":
             case "MANGROVE_ROOTS":
                 return orig.name().equals("MANGROVE_LOG") || orig.name().equals("STRIPPED_MANGROVE_LOG") || orig.name().equals("MANGROVE_ROOTS");
+            case "CHERRY_LOG":
+            case "CHERRY_LEAVES":
+            case "STRIPPED_CHERRY_LOG":
+
+                return orig.name().equals("CHERRY_LOG") || orig.name().equals("STRIPPED_CHERRY_LOG");
         }
         return false;
     }
@@ -148,6 +154,8 @@ public class TreeUtils {
             return "spruce";
         } else if (name.contains("mangrove")) {
             return "mangrove";
+        } else if (name.contains("cherry")) {
+            return "cherry";
         } else {
             return "none";
         }
