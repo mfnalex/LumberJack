@@ -1,11 +1,11 @@
 package de.jeff_media.lumberjack;
 
 import com.google.common.base.Enums;
+import com.jeff_media.jefflib.BlockTracker;
+import com.jeff_media.jefflib.JeffLib;
+import com.jeff_media.jefflib.data.McVersion;
+import com.jeff_media.jefflib.pluginhooks.PlaceholderAPIUtils;
 import com.jeff_media.morepersistentdatatypes.DataType;
-import de.jeff_media.jefflib.BlockTracker;
-import de.jeff_media.jefflib.JeffLib;
-import de.jeff_media.jefflib.McVersion;
-import de.jeff_media.jefflib.pluginhooks.PlaceholderAPIUtils;
 import de.jeff_media.lumberjack.commands.CommandLumberjack;
 import de.jeff_media.lumberjack.config.ConfigUpdater;
 import de.jeff_media.lumberjack.config.Messages;

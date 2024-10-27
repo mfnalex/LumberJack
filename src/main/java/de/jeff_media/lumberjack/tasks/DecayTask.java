@@ -1,6 +1,6 @@
 package de.jeff_media.lumberjack.tasks;
 
-import de.jeff_media.jefflib.Ticks;
+import com.jeff_media.jefflib.Ticks;
 import de.jeff_media.lumberjack.LumberJack;
 import de.jeff_media.lumberjack.utils.DecayUtils;
 import org.bukkit.Bukkit;

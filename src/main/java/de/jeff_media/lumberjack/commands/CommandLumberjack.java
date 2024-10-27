@@ -1,6 +1,6 @@
 package de.jeff_media.lumberjack.commands;
 
-import de.jeff_media.jefflib.BlockTracker;
+import com.jeff_media.jefflib.BlockTracker;
 import de.jeff_media.lumberjack.LumberJack;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;

@@ -1,7 +1,7 @@
 package de.jeff_media.lumberjack.listeners;
 
-import de.jeff_media.jefflib.BlockTracker;
-import de.jeff_media.jefflib.NBTAPI;
+import com.jeff_media.jefflib.BlockTracker;
+import com.jeff_media.jefflib.NBTAPI;
 import de.jeff_media.lumberjack.LumberJack;
 import de.jeff_media.lumberjack.NBTKeys;
 import de.jeff_media.lumberjack.NBTValues;
